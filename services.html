@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Services | Brow Queen</title>
+    <meta name="description" content="Explore our elite menu of 12 professional brow treatments including Microblading, Ombré Shading, Lamination, and Signature Mapping in Durban.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Elite Services | Brow Queen">
+    <meta property="og:description" content="Explore our elite menu of 12 professional brow treatments.">
+    <meta property="og:image" content="logo.jpeg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap');
+        :root { --gold: #D4A396; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; }
+        .font-serif { font-family: 'Cinzel', serif; }
+        .text-gold { color: var(--gold); }
+        .bg-gold { background-color: var(--gold); }
+        @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+        .animate-ping { animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+    </style>
+</head>
+<body class="bg-black text-white selection:bg-[#D4A396] selection:text-black">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#D4A396] text-black px-4 py-2 font-bold uppercase tracking-widest text-xs z-[300]">Skip to main content</a>
+
+    <nav class="fixed w-full z-[200] py-4 px-6 md:px-10 flex justify-between items-center bg-black/95 backdrop-blur-md border-b border-[#D4A396]/10">
+        <a href="index.html" class="flex items-center">
+            <img src="logo.jpeg" alt="Brow Queen Luxury Eyebrow Artistry Studio Logo" width="150" height="64" class="h-12 md:h-16 w-auto object-contain" loading="eager" decoding="async" />
+        </a>
+        <div class="hidden md:flex space-x-8 text-[10px] uppercase tracking-[0.2em] items-center">
+            <a href="index.html" class="hover:text-[#D4A396] transition">Home</a>
+            <a href="services.html" class="hover:text-[#D4A396] transition">Services</a>
+            <a href="about.html" class="hover:text-[#D4A396] transition">About</a>
+            <a href="gallery.html" class="hover:text-[#D4A396] transition">Gallery</a>
+            <a href="contact.html" class="hover:text-[#D4A396] transition">Contact</a>
+            <a href="https://wa.me/27746442787" target="_blank" rel="noopener noreferrer" class="bg-[#D4A396] text-black px-6 py-2 font-bold text-xs tracking-wider hover:bg-white transition">Book Now</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-[#D4A396] p-2 relative z-[210]">
+            <i data-lucide="menu" id="menu-icon"></i>
+        </button>
+    </nav>
+
+    <main id="main-content"></main>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-black translate-x-full md:hidden flex flex-col justify-center items-center space-y-8 text-center transition-transform duration-500 ease-in-out">
+        <a href="index.html" class="text-white text-2xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Home</a>
+        <a href="services.html" class="text-white text-2xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Services</a>
+        <a href="about.html" class="text-white text-2xl font-serif tracking-widest uppercase hover:text-[#D4A396]">About</a>
+        <a href="gallery.html" class="text-white text-2xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Gallery</a>
+        <a href="contact.html" class="text-white text-2xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Contact</a>
+        <a href="https://wa.me/27746442787" target="_blank" rel="noopener noreferrer" class="bg-gold text-black px-10 py-4 font-bold uppercase tracking-widest mt-4 block text-center hover:bg-white transition-all">Book Now</a>
+    </div>
+
+    <section class="pt-48 pb-20 px-10 text-center bg-zinc-950/50">
+        <span class="text-[#D4A396] uppercase tracking-[0.5em] text-xs mb-4 block animate-pulse">The Royal Menu</span>
+        <h1 class="text-5xl md:text-7xl font-serif mb-6">Expert Brow <span class="italic">Artistry</span></h1>
+        <p class="text-zinc-500 max-w-2xl mx-auto tracking-widest text-xs uppercase leading-relaxed">Tailored perfection through advanced mapping and premium pigments.</p>
+    </section>
+
+    <section class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="scissors" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Brow Shaping</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">A bespoke combination of Waxing, Threading, and Tweezing. We use the Golden Ratio mapping technique to find your balance.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">45 Min</span><span class="text-lg font-serif">R280.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="palette" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Brow Tinting</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">Define your arches with our high-end, skin-safe dyes. Adds depth to light hairs and creates an instantly fuller appearance.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">20 Min</span><span class="text-lg font-serif">R150.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="droplets" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Hybrid Tint</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">The ultimate long-wear dye. Stains the skin for up to 10 days and the hair for up to 6 weeks for a rich, "filled-in" look.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">40 Min</span><span class="text-lg font-serif">R350.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="leaf" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Henna Brows</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">A natural, plant-based tinting method that creates a soft, powdered effect on the skin while strengthening the brow hair.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">60 Min</span><span class="text-lg font-serif">R380.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="sparkles" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Brow Lamination</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">The "Supermodel" brow secret. We lift and set your brow hairs in a vertical direction for a full, feathered look.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">60 Min</span><span class="text-lg font-serif">R500.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layers" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Brow Extensions</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">Individual synthetic hairs applied directly to the skin or hair to fill in gaps and create 3D texture and volume.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">90 Min</span><span class="text-lg font-serif">R950.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="pen-tool" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Microblading</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">Semi-permanent tattooing that mimics natural hair strokes. Perfect for reshaping and restoring sparse eyebrows.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">180 Min</span><span class="text-lg font-serif">R3,500.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="wind" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Ombre Powder</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">A soft, pixelated shading technique that creates a misty makeup look with a lighter front and darker tail.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">180 Min</span><span class="text-lg font-serif">R3,800.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="wand-2" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Combo Brows</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">The ultimate premium service. We combine Microblading hair strokes with Ombre shading for maximum dimension.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">210 Min</span><span class="text-lg font-serif">R4,500.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="ruler" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Brow Mapping</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">A scientific consultation where we use precision tools to measure your ideal brow shape based on bone structure.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">30 Min</span><span class="text-lg font-serif">R200.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="star" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">Fill & Styling</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">Professional grooming and temporary enhancement using luxury pencils and highlighters. Perfect for events.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">30 Min</span><span class="text-lg font-serif">R300.00</span></div>
+            </div>
+            <div class="group border border-zinc-900 p-8 bg-black hover:border-[#D4A396]/50 transition-all duration-500">
+                <div class="text-[#D4A396] mb-6 group-hover:scale-110 transition-transform duration-500"><i data-lucide="gem" class="w-8 h-8"></i></div>
+                <h3 class="text-xl font-serif text-[#D4A396] mb-4 uppercase tracking-wider">The Royal Duo</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">A full brow lamination and tint paired with a premium lash lift and tint for a complete facial transformation.</p>
+                <div class="flex justify-between items-baseline border-t border-zinc-900 pt-6"><span class="text-[10px] text-zinc-600 uppercase">120 Min</span><span class="text-lg font-serif">R1,200.00</span></div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/27746442787" target="_blank" class="whatsapp-btn fixed bottom-8 right-8 z-[100] group">
+        <div class="absolute inset-0 bg-[#D4A396] rounded-full animate-ping opacity-20 group-hover:opacity-40"></div>
+        <div class="relative bg-black border border-[#D4A396] p-4 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-500 transform group-hover:-translate-y-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A396" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        </div>
+        <span class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-[#D4A396] text-black text-[10px] font-bold tracking-[0.2em] uppercase py-2 px-4 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">Chat with a Stylist</span>
+    </a>
+ <footer class="bg-black pt-16 md:pt-24 pb-8 md:pb-12 border-t border-[#D4A396]/10 px-4 md:px-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-20">
+            <div class="sm:col-span-2 text-center sm:text-left">
+                <h2 class="text-2xl md:text-3xl font-serif text-[#D4A396] tracking-tighter mb-4 md:mb-6 uppercase">Brow Queen</h2>
+                <p class="text-zinc-500 max-w-sm text-[9px] md:text-[10px] leading-relaxed tracking-widest uppercase mx-auto sm:mx-0">The premium destination for advanced brow artistry and luxury aesthetics in South Africa. We empower our clients through precision, symmetry, and confidence.</p>
+            </div>
+            <div class="text-center sm:text-left">
+                <h4 class="text-white uppercase tracking-[0.3em] text-[9px] md:text-[10px] mb-6 md:mb-8 font-bold">Navigation</h4>
+                <ul class="space-y-3 md:space-y-4 text-zinc-500 text-[9px] md:text-[10px] tracking-widest uppercase">
+                    <li><a href="index.html" class="hover:text-[#D4A396] transition-colors duration-300">The Studio</a></li>
+                    <li><a href="services.html" class="hover:text-[#D4A396] transition-colors duration-300">The Menu</a></li>
+                    <li><a href="about.html" class="hover:text-[#D4A396] transition-colors duration-300">Our Story</a></li>
+                    <li><a href="gallery.html" class="hover:text-[#D4A396] transition-colors duration-300">The Portfolio</a></li>
+                    <li><a href="contact.html" class="hover:text-[#D4A396] transition-colors duration-300">Bookings</a></li>
+                </ul>
+            </div>
+            <div class="text-center sm:text-left">
+                <h4 class="text-white uppercase tracking-[0.3em] text-[9px] md:text-[10px] mb-6 md:mb-8 font-bold">The Studio</h4>
+                <ul class="space-y-3 md:space-y-4 text-zinc-500 text-[9px] md:text-[10px] tracking-widest uppercase">
+                    <li class="flex items-center justify-center sm:justify-start gap-2 md:gap-3">
+                        <i data-lucide="map-pin" class="text-[#D4A396] w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0"></i>
+                        <span class="break-words">72 Rosetta Road, Windermere</span>
+                    </li>
+                    <li class="flex items-center justify-center sm:justify-start gap-2 md:gap-3">
+                        <i data-lucide="phone" class="text-[#D4A396] w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0"></i>
+                        <span>+27 74 644 2787</span>
+                    </li>
+                    <li class="flex items-center justify-center sm:justify-start gap-2 md:gap-3">
+                        <i data-lucide="mail" class="text-[#D4A396] w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0"></i>
+                        <span class="break-words">Kippenodelia032@gmail.com</span>
+                    </li>
+                    <li class="flex items-center justify-center sm:justify-start gap-2 md:gap-3">
+                        <i data-lucide="clock" class="text-[#D4A396] w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0"></i>
+                        <span>Mon - Sat: 09:00 - 18:00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto pt-6 md:pt-10 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+            <p class="text-zinc-700 text-[8px] md:text-[9px] tracking-widest uppercase text-center">© 2026 Brow Queen. All Rights Reserved.</p>
+            <p class="text-zinc-600 text-[7px] md:text-[8px] tracking-wider uppercase text-center">
+                Developed by <a href="https://afribizconnect.co.za/" target="_blank" rel="noopener noreferrer" class="text-[#D4A396] hover:text-white transition-colors duration-300">Afribiz Connect</a>
+            </p>
+        </div>
+    </footer>
+    <script>
+        lucide.createIcons();
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('translate-x-full');
+                const isOpen = !mobileMenu.classList.contains('translate-x-full');
+                menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+                lucide.createIcons();
+                document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+            });
+        }
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;600&display=swap');
+
+:root {
+    --gold: #D4A396; /* Primary Luxury Rose Gold */
+    --gold-glow: rgba(212, 163, 150, 0.4); /* Rose Gold Glow Effect */
+    --black: #000000;
+    --dark-gray: #1A1514; /* Deep Charcoal Base Accent */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--black);
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+/* --- Luxury Elements --- */
+.text-gold { color: var(--gold); }
+.bg-gold { background-color: var(--gold); }
+.border-gold { border-color: var(--gold); }
+
+.gold-glow:hover {
+    box-shadow: 0 0 20px var(--gold-glow);
+    transition: 0.5s;
+}
+
+/* --- Navigation --- */
+nav {
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212, 163, 150, 0.1);
+}
+
+.nav-link {
+    position: relative;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 1px;
+    bottom: -5px; left: 0;
+    background: var(--gold);
+    transition: 0.3s;
+}
+
+.nav-link:hover::after, .active::after { width: 100%; }
+
+/* --- Animations --- */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.zoom-img { overflow: hidden; }
+.zoom-img img { transition: 1.5s; }
+.zoom-img:hover img { transform: scale(1.1); }
+
+/* --- Buttons --- */
+.btn-premium {
+    padding: 15px 35px;
+    border: 1px solid var(--gold);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 3px;
+    transition: 0.5s;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-premium:hover {
+    background: var(--gold);
+    color: black;
+}
+
+/* --- WhatsApp --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.whatsapp-btn:hover .lucide {
+    filter: drop-shadow(0 0 5px #D4A396);
+}
