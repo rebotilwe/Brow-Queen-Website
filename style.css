@@ -2,22 +2,33 @@
 
 :root {
     --gold: #D4A396; /* Primary Luxury Rose Gold */
-    --gold-glow: rgba(212, 163, 150, 0.4); /* Rose Gold Glow Effect */
-    --black: #000000;
-    --dark-gray: #1A1514; /* Deep Charcoal Base Accent */
+    --gold-glow: rgba(212, 163, 150, 0.3);
+    --gold-light: rgba(212, 163, 150, 0.15);
+    
+    /* NEW LIGHTER COLORS */
+    --bg-light: #FDF8F5;      /* Warm off-white/cream background */
+    --bg-soft: #FAF4EF;        /* Soft warm background for sections */
+    --card-bg: #FFFFFF;        /* Pure white for cards */
+    --text-dark: #2C2421;      /* Warm dark brown/charcoal for text */
+    --text-soft: #5C524E;      /* Soft warm gray for secondary text */
+    --border-light: #E8E0DB;   /* Soft warm border */
+    --footer-bg: #F5EFEA;      /* Warm footer background */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background-color: var(--black);
-    color: #ffffff;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+h1, h2, h3, .serif { 
+    font-family: 'Playfair Display', serif; 
+    color: var(--text-dark);
+}
 
 /* --- Luxury Elements --- */
 .text-gold { color: var(--gold); }
@@ -25,14 +36,27 @@ h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
 .border-gold { border-color: var(--gold); }
 
 .gold-glow:hover {
-    box-shadow: 0 0 20px var(--gold-glow);
+    box-shadow: 0 0 25px var(--gold-glow);
     transition: 0.5s;
 }
 
-/* --- Navigation --- */
+/* Light mode card styling */
+.light-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    transition: 0.3s;
+}
+
+.light-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+/* --- Navigation (Lighter) --- */
 nav {
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(212, 163, 150, 0.1);
+    border-bottom: 1px solid var(--border-light);
+    background: rgba(253, 248, 245, 0.95) !important;
 }
 
 .nav-link {
@@ -41,6 +65,7 @@ nav {
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: 0.3s;
+    color: var(--text-dark);
 }
 
 .nav-link::after {
@@ -73,27 +98,161 @@ nav {
 
 .zoom-img { overflow: hidden; }
 .zoom-img img { transition: 1.5s; }
-.zoom-img:hover img { transform: scale(1.1); }
+.zoom-img:hover img { transform: scale(1.05); }
 
 /* --- Buttons --- */
 .btn-premium {
-    padding: 15px 35px;
-    border: 1px solid var(--gold);
+    padding: 14px 32px;
+    border: 1.5px solid var(--gold);
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 3px;
-    transition: 0.5s;
+    transition: 0.4s;
     display: inline-block;
     text-decoration: none;
-    color: white;
+    color: var(--text-dark);
+    background: transparent;
+    font-weight: 600;
 }
 
 .btn-premium:hover {
     background: var(--gold);
-    color: black;
+    color: white;
+    border-color: var(--gold);
 }
 
-/* --- WhatsApp --- */
+.btn-premium-gold {
+    background: var(--gold);
+    color: white;
+    padding: 14px 32px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 3px;
+    transition: 0.4s;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+}
+
+.btn-premium-gold:hover {
+    background: var(--text-dark);
+    color: var(--gold);
+}
+
+/* --- Section Backgrounds --- */
+.section-light {
+    background: var(--bg-light);
+}
+
+.section-soft {
+    background: var(--bg-soft);
+}
+
+/* --- Service Cards (Lighter) --- */
+.service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    padding: 2rem;
+    transition: all 0.4s ease;
+}
+
+.service-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+}
+
+.service-card h3 {
+    color: var(--text-dark);
+    font-size: 1.3rem;
+}
+
+.service-card .price {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* --- Gallery Cards (Lighter) --- */
+.gallery-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+}
+
+.gallery-card img {
+    filter: grayscale(30%);
+    transition: 0.6s;
+}
+
+.gallery-card:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* --- Contact Form (Lighter) --- */
+.contact-input {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    color: var(--text-dark);
+}
+
+.contact-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-light);
+    outline: none;
+}
+
+.contact-input::placeholder {
+    color: #B8AEA8;
+}
+
+/* --- Footer (Lighter) --- */
+footer {
+    background: var(--footer-bg);
+    border-top: 1px solid var(--border-light);
+}
+
+footer h4, footer h2 {
+    color: var(--text-dark);
+}
+
+.footer-link {
+    color: var(--text-soft);
+    transition: 0.3s;
+}
+
+.footer-link:hover {
+    color: var(--gold);
+}
+
+/* --- Glass Card Effect (Lighter) --- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+}
+
+/* --- Hero Section Overlay (Lighter) --- */
+.hero-overlay {
+    background: linear-gradient(135deg, rgba(253, 248, 245, 0.85) 0%, rgba(253, 248, 245, 0.7) 100%);
+}
+
+/* --- Testimonial Cards (Lighter) --- */
+.testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    padding: 2rem;
+    transition: 0.3s;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+/* --- WhatsApp Button (Lighter) --- */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
@@ -105,8 +264,61 @@ nav {
     align-items: center;
     justify-content: center;
     z-index: 100;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
 }
+
+.whatsapp-btn {
+    background: var(--card-bg);
+    border: 1.5px solid var(--gold);
+}
+
+.whatsapp-btn:hover .lucide {
+    filter: drop-shadow(0 0 5px var(--gold));
+}
+
+/* --- Counter Section (Lighter) --- */
+.counter-section {
+    background: var(--bg-soft);
+}
+
+.counter-number {
+    color: var(--gold);
+    font-size: 2.8rem;
+    font-weight: 300;
+}
+
+/* --- Mobile Menu (Lighter) --- */
+#mobile-menu {
+    background: var(--bg-light) !important;
+}
+
+#mobile-menu a {
+    color: var(--text-dark);
+}
+
+#mobile-menu a:hover {
+    color: var(--gold);
+}
+
+/* --- Map Container --- */
+.map-container {
+    border: 1px solid var(--border-light);
+    background: var(--card-bg);
+}
+
+/* --- Utility Classes --- */
+.text-soft {
+    color: var(--text-soft);
+}
+
+.bg-cream {
+    background: var(--bg-light);
+}
+
+.bg-warm {
+    background: var(--bg-soft);
+}
+
 @keyframes ping {
   75%, 100% {
     transform: scale(2);
@@ -116,8 +328,4 @@ nav {
 
 .animate-ping {
   animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-.whatsapp-btn:hover .lucide {
-    filter: drop-shadow(0 0 5px #D4A396);
 }
