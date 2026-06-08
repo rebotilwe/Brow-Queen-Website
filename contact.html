@@ -195,9 +195,8 @@
         </a>
         <div class="hidden md:flex space-x-8 lg:space-x-10 text-[11px] uppercase tracking-[0.2em] items-center font-semibold">
             <a href="index.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Home</a>
-             <a href="about.html" class="text-[#2C2421] hover:text-[#D4A396] transition">About</a>
+            <a href="about.html" class="text-[#2C2421] hover:text-[#D4A396] transition">About</a>
             <a href="services.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Services</a>
-           
             <a href="gallery.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Gallery</a>
             <a href="contact.html" class="text-[#D4A396] hover:text-[#D4A396] transition">Contact</a>
             <a href="https://wa.me/27746442787" target="_blank" class="bg-[#D4A396] text-white px-6 py-2.5 font-bold text-xs tracking-wider hover:bg-[#2C2421] transition rounded-full">Book Now</a>
@@ -212,9 +211,8 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col justify-center items-center space-y-8 text-center transition-transform duration-500 ease-in-out shadow-xl">
         <a href="index.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Home</a>
-                <a href="about.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">About</a>
+        <a href="about.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">About</a>
         <a href="services.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Services</a>
-
         <a href="gallery.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Gallery</a>
         <a href="contact.html" class="text-[#D4A396] text-xl font-serif tracking-widest uppercase">Contact</a>
         <a href="https://wa.me/27746442787" class="bg-[#D4A396] text-white px-8 py-3 font-bold uppercase tracking-widest mt-4 rounded-full">Book Now</a>
@@ -292,11 +290,12 @@
                 </div>
             </div>
             
-            <!-- Right Side - Booking Form -->
+            <!-- Right Side - Booking Form with WORKING Formspree -->
             <div class="info-card">
                 <h3 class="font-serif text-2xl text-center mb-6 text-[#2C2421]">Book Your <span class="text-[#D4A396]">Appointment</span></h3>
                 
-                <form id="contact-form" action="YOUR_FORMSPREE_URL_HERE" method="POST" class="space-y-5">
+                <!-- Updated Formspree action URL -->
+                <form id="contact-form" action="https://formspree.io/f/xrevqrvk" method="POST" class="space-y-5">
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label class="text-[11px] uppercase tracking-wider text-[#8B7E78] font-semibold block mb-1">Full Name *</label>
@@ -359,6 +358,7 @@
                         <textarea name="message" rows="3" class="contact-input" placeholder="Tell us about your brow goals..."></textarea>
                     </div>
                     
+                    <!-- Formspree required hidden field -->
                     <input type="text" name="_gotcha" style="display:none">
                     
                     <button type="submit" class="btn-modern">Request Appointment</button>
@@ -467,7 +467,7 @@
             });
         });
 
-        // Form Handler
+        // Form Handler with Checkbox Validation
         const form = document.getElementById('contact-form');
         const statusDiv = document.getElementById('form-status');
         const serviceError = document.getElementById('service-error');
@@ -509,7 +509,8 @@
                         statusDiv.innerText = "Success! Your booking request has been sent. We'll contact you within 24 hours.";
                         form.reset();
                     } else {
-                        throw new Error('Submission failed');
+                        const data = await response.json();
+                        throw new Error(data.error || 'Submission failed');
                     }
                 } catch (error) {
                     statusDiv.className = "text-center text-[11px] text-red-500 mt-3";
