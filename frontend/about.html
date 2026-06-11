@@ -43,22 +43,15 @@
         .text-gold { color: var(--gold); }
         .bg-gold { background-color: var(--gold); }
         
-        /* Animations */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
         .animate-fade-up {
-            animation: fadeUp 0.8s ease forwards;
+            animation: fadeUp 0.6s ease forwards;
         }
         
-        /* Modern Card Styles */
         .modern-card {
             background: white;
             border-radius: 24px;
@@ -74,7 +67,6 @@
             border-color: var(--gold-light);
         }
         
-        /* Stats Section */
         .stat-card {
             text-align: center;
             padding: 2rem;
@@ -90,7 +82,6 @@
             font-family: 'Playfair Display', serif;
         }
         
-        /* Process Step */
         .process-step {
             text-align: center;
             position: relative;
@@ -116,7 +107,6 @@
             background: var(--text-dark);
         }
         
-        /* Image hover effect */
         .img-hover-zoom {
             overflow: hidden;
             border-radius: 24px;
@@ -130,7 +120,6 @@
             transform: scale(1.05);
         }
         
-        /* Button Styles */
         .btn-modern {
             display: inline-block;
             padding: 1rem 2.5rem;
@@ -172,7 +161,6 @@
             transform: translateY(-3px);
         }
         
-        /* Signature badge */
         .signature-badge {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
@@ -181,7 +169,6 @@
             margin-top: 1rem;
         }
         
-        /* Logo size */
         .logo-image {
             height: 70px;
             width: auto;
@@ -208,16 +195,14 @@
 <body>
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#D4A396] text-black px-4 py-2 font-bold uppercase tracking-widest text-xs z-[300] rounded-full">Skip to main content</a>
 
-    <!-- Modern Navigation -->
     <nav class="fixed w-full z-[200] py-3 md:py-4 px-6 md:px-10 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-[#D4A396]/10 shadow-sm">
         <a href="index.html" class="flex items-center">
-            <img src="logo1.png" alt="Brow Queen Luxury Eyebrow Artistry Studio Logo" class="logo-image" loading="eager" decoding="async" />
+            <img src="images/logo1.png" alt="Brow Queen Luxury Eyebrow Artistry Studio Logo" class="logo-image" loading="eager" decoding="async" />
         </a>
         <div class="hidden md:flex space-x-8 lg:space-x-10 text-[11px] uppercase tracking-[0.2em] items-center font-semibold">
             <a href="index.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Home</a>
-             <a href="about.html" class="text-[#D4A396] hover:text-[#D4A396] transition">About</a>
+            <a href="about.html" class="text-[#D4A396] hover:text-[#D4A396] transition">About</a>
             <a href="services.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Services</a>
-           
             <a href="gallery.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Gallery</a>
             <a href="contact.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Contact</a>
             <a href="https://wa.me/27746442787" target="_blank" class="bg-[#D4A396] text-white px-6 py-2.5 font-bold text-xs tracking-wider hover:bg-[#2C2421] transition rounded-full">Book Now</a>
@@ -229,12 +214,10 @@
 
     <main id="main-content"></main>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col justify-center items-center space-y-8 text-center transition-transform duration-500 ease-in-out shadow-xl">
         <a href="index.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Home</a>
-         <a href="about.html" class="text-[#D4A396] text-xl font-serif tracking-widest uppercase">About</a>
+        <a href="about.html" class="text-[#D4A396] text-xl font-serif tracking-widest uppercase">About</a>
         <a href="services.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Services</a>
-       
         <a href="gallery.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Gallery</a>
         <a href="contact.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Contact</a>
         <a href="https://wa.me/27746442787" class="bg-[#D4A396] text-white px-8 py-3 font-bold uppercase tracking-widest mt-4 rounded-full">Book Now</a>
@@ -243,7 +226,7 @@
     <!-- Hero Section -->
     <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-32">
         <div class="absolute inset-0">
-            <img src="image 18.jpg" alt="Luxury brow artistry close-up" class="w-full h-full object-cover">
+            <img src="images/image18.jpg" alt="Luxury brow artistry close-up" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-white/85 via-white/60 to-transparent"></div>
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full">
@@ -263,22 +246,10 @@
     <section class="py-16 px-6 md:px-10 bg-[#FAF4EF]">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="stat-card">
-                    <div class="stat-number">1500+</div>
-                    <p class="text-[#8B7E78] text-xs uppercase tracking-wider mt-2">Happy Clients</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">12+</div>
-                    <p class="text-[#8B7E78] text-xs uppercase tracking-wider mt-2">Expert Services</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5+</div>
-                    <p class="text-[#8B7E78] text-xs uppercase tracking-wider mt-2">Years Excellence</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <p class="text-[#8B7E78] text-xs uppercase tracking-wider mt-2">Satisfaction</p>
-                </div>
+                <div class="stat-card"><div class="stat-number">1500+</div><p class="text-[#8B7E78] text-xs uppercase tracking-wider mt-2">Happy Clients</p></div>
+                <div class="stat-card"><div class="stat-number">12+</div><p class="text-[#8B7E78] text-xs uppercase tracking-wider mt-2">Expert Services</p></div>
+                <div class="stat-card"><div class="stat-number">5+</div><p class="text-[#8B7E78] text-xs uppercase tracking-wider mt-2">Years Excellence</p></div>
+                <div class="stat-card"><div class="stat-number">100%</div><p class="text-[#8B7E78] text-xs uppercase tracking-wider mt-2">Satisfaction</p></div>
             </div>
         </div>
     </section>
@@ -288,7 +259,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="img-hover-zoom order-2 lg:order-1">
-                    <img src="image 15.jpg" alt="Master Stylist Odelia, founder of Brow Queen" class="w-full rounded-3xl shadow-2xl">
+                    <img src="images/image15.jpg" alt="Master Stylist Odelia, founder of Brow Queen" class="w-full rounded-3xl shadow-2xl">
                 </div>
                 <div class="order-1 lg:order-2">
                     <span class="text-[#D4A396] uppercase tracking-[0.3em] text-xs font-semibold">The Visionary</span>
@@ -318,26 +289,10 @@
             </div>
             
             <div class="grid md:grid-cols-4 gap-8">
-                <div class="process-step">
-                    <div class="step-number">01</div>
-                    <h4 class="font-serif text-xl mb-3">Consult</h4>
-                    <p class="text-[#8B7E78] text-sm">In-depth facial analysis and goal mapping</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">02</div>
-                    <h4 class="font-serif text-xl mb-3">Design</h4>
-                    <p class="text-[#8B7E78] text-sm">Custom brow mapping using golden ratio</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">03</div>
-                    <h4 class="font-serif text-xl mb-3">Execute</h4>
-                    <p class="text-[#8B7E78] text-sm">Precision application with premium pigments</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">04</div>
-                    <h4 class="font-serif text-xl mb-3">Reveal</h4>
-                    <p class="text-[#8B7E78] text-sm">Final reveal with aftercare guidance</p>
-                </div>
+                <div class="process-step"><div class="step-number">01</div><h4 class="font-serif text-xl mb-3">Consult</h4><p class="text-[#8B7E78] text-sm">In-depth facial analysis and goal mapping</p></div>
+                <div class="process-step"><div class="step-number">02</div><h4 class="font-serif text-xl mb-3">Design</h4><p class="text-[#8B7E78] text-sm">Custom brow mapping using golden ratio</p></div>
+                <div class="process-step"><div class="step-number">03</div><h4 class="font-serif text-xl mb-3">Execute</h4><p class="text-[#8B7E78] text-sm">Precision application with premium pigments</p></div>
+                <div class="process-step"><div class="step-number">04</div><h4 class="font-serif text-xl mb-3">Reveal</h4><p class="text-[#8B7E78] text-sm">Final reveal with aftercare guidance</p></div>
             </div>
         </div>
     </section>
@@ -351,27 +306,9 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="modern-card text-center">
-                    <div class="w-16 h-16 bg-[#D4A396]/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                        <i data-lucide="shield-check" class="w-8 h-8 text-[#D4A396]"></i>
-                    </div>
-                    <h3 class="font-serif text-xl mb-3">Pure Integrity</h3>
-                    <p class="text-[#8B7E78] text-sm">Medical-grade hygiene protocols and the world's safest pigments.</p>
-                </div>
-                <div class="modern-card text-center">
-                    <div class="w-16 h-16 bg-[#D4A396]/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                        <i data-lucide="scale" class="w-8 h-8 text-[#D4A396]"></i>
-                    </div>
-                    <h3 class="font-serif text-xl mb-3">Visual Symmetry</h3>
-                    <p class="text-[#8B7E78] text-sm">Applying the Golden Ratio to harmonize your unique features.</p>
-                </div>
-                <div class="modern-card text-center">
-                    <div class="w-16 h-16 bg-[#D4A396]/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                        <i data-lucide="sparkles" class="w-8 h-8 text-[#D4A396]"></i>
-                    </div>
-                    <h3 class="font-serif text-xl mb-3">Royal Results</h3>
-                    <p class="text-[#8B7E78] text-sm">A transformation that elevates your look and confidence.</p>
-                </div>
+                <div class="modern-card text-center"><div class="w-16 h-16 bg-[#D4A396]/10 rounded-full flex items-center justify-center mx-auto mb-5"><i data-lucide="shield-check" class="w-8 h-8 text-[#D4A396]"></i></div><h3 class="font-serif text-xl mb-3">Pure Integrity</h3><p class="text-[#8B7E78] text-sm">Medical-grade hygiene protocols and the world's safest pigments.</p></div>
+                <div class="modern-card text-center"><div class="w-16 h-16 bg-[#D4A396]/10 rounded-full flex items-center justify-center mx-auto mb-5"><i data-lucide="scale" class="w-8 h-8 text-[#D4A396]"></i></div><h3 class="font-serif text-xl mb-3">Visual Symmetry</h3><p class="text-[#8B7E78] text-sm">Applying the Golden Ratio to harmonize your unique features.</p></div>
+                <div class="modern-card text-center"><div class="w-16 h-16 bg-[#D4A396]/10 rounded-full flex items-center justify-center mx-auto mb-5"><i data-lucide="sparkles" class="w-8 h-8 text-[#D4A396]"></i></div><h3 class="font-serif text-xl mb-3">Royal Results</h3><p class="text-[#8B7E78] text-sm">A transformation that elevates your look and confidence.</p></div>
             </div>
         </div>
     </section>
@@ -388,65 +325,30 @@
         </div>
     </section>
 
-    <!-- WhatsApp Button -->
     <a href="https://wa.me/27746442787" target="_blank" class="whatsapp-btn fixed bottom-8 right-8 z-[100] group">
         <div class="absolute inset-0 bg-[#D4A396] rounded-full animate-ping opacity-20"></div>
         <div class="relative bg-white border border-[#D4A396] p-3 rounded-full shadow-lg transition-all duration-500 group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A396" stroke-width="2">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A396" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
         </div>
     </a>
 
-    <!-- Footer -->
     <footer class="bg-[#2C2421] pt-16 pb-8 px-6 md:px-10">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-                <div>
-                    <h3 class="text-2xl font-serif text-[#D4A396] mb-4">Brow Queen</h3>
-                    <p class="text-[#A89A94] text-sm leading-relaxed">Luxury eyebrow artistry studio in Durban. Precision, symmetry, and confidence.</p>
-                </div>
-                <div>
-                    <h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Quick Links</h4>
-                    <ul class="space-y-2 text-[#A89A94] text-sm">
-                        <li><a href="index.html" class="hover:text-[#D4A396] transition">Home</a></li>
-                        <li><a href="services.html" class="hover:text-[#D4A396] transition">Services</a></li>
-                        <li><a href="about.html" class="hover:text-[#D4A396] transition">About Us</a></li>
-                        <li><a href="gallery.html" class="hover:text-[#D4A396] transition">Gallery</a></li>
-                        <li><a href="contact.html" class="hover:text-[#D4A396] transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Contact</h4>
-                    <ul class="space-y-2 text-[#A89A94] text-sm">
-                        <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 72 Rosetta Road, Windermere</li>
-                        <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +27 74 644 2787</li>
-                        <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Kippenodelia032@gmail.com</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Hours</h4>
-                    <ul class="space-y-2 text-[#A89A94] text-sm">
-                        <li>Monday - Saturday: 09:00 - 18:00</li>
-                        <li>Sunday: Closed</li>
-                    </ul>
-                </div>
+                <div><h3 class="text-2xl font-serif text-[#D4A396] mb-4">Brow Queen</h3><p class="text-[#A89A94] text-sm leading-relaxed">Luxury eyebrow artistry studio in Durban. Precision, symmetry, and confidence.</p></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Quick Links</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li><a href="index.html" class="hover:text-[#D4A396] transition">Home</a></li><li><a href="services.html" class="hover:text-[#D4A396] transition">Services</a></li><li><a href="about.html" class="hover:text-[#D4A396] transition">About Us</a></li><li><a href="gallery.html" class="hover:text-[#D4A396] transition">Gallery</a></li><li><a href="contact.html" class="hover:text-[#D4A396] transition">Contact</a></li></ul></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Contact</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 72 Rosetta Road, Windermere</li><li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +27 74 644 2787</li><li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Kippenodelia032@gmail.com</li></ul></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Hours</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li>Monday - Saturday: 09:00 - 18:00</li><li>Sunday: Closed</li></ul></div>
             </div>
-            <div class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3">
-                <p class="text-[#A89A94] text-xs">© 2026 Brow Queen. All Rights Reserved.</p>
-                <p class="text-[#8B7E78] text-xs">Developed by <a href="https://afribizconnect.co.za/" target="_blank" class="text-[#D4A396] hover:text-white transition">Afribiz Connect</a></p>
-            </div>
+            <div class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3"><p class="text-[#A89A94] text-xs">© 2026 Brow Queen. All Rights Reserved.</p><p class="text-[#8B7E78] text-xs">Developed by <a href="https://afribizconnect.co.za/" target="_blank" class="text-[#D4A396] hover:text-white transition">Afribiz Connect</a></p></div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
-        
-        // Mobile Menu
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
-
         if (menuToggle && mobileMenu) {
             menuToggle.addEventListener('click', () => {
                 mobileMenu.classList.toggle('translate-x-full');
@@ -456,7 +358,6 @@
                 document.body.style.overflow = isOpen ? 'hidden' : 'auto';
             });
         }
-
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('translate-x-full');
@@ -465,23 +366,12 @@
                 lucide.createIcons();
             });
         });
-        
-        // Scroll animations
-        const observerOptions = { threshold: 0.1, rootMargin: '0px' };
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
         }, observerOptions);
-        
         document.querySelectorAll('.modern-card, .process-step, .stat-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
+            el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'all 0.6s ease'; observer.observe(el);
         });
     </script>
 </body>

@@ -43,7 +43,6 @@
         .text-gold { color: var(--gold); }
         .bg-gold { background-color: var(--gold); }
         
-        /* Animations */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -53,7 +52,6 @@
             animation: fadeUp 0.6s ease forwards;
         }
         
-        /* Gallery Grid - Masonry Style */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -121,7 +119,6 @@
             text-transform: uppercase;
         }
         
-        /* Category Filter */
         .filter-btn {
             padding: 0.6rem 1.5rem;
             border-radius: 40px;
@@ -140,7 +137,6 @@
             color: white;
         }
         
-        /* Lightbox Modal */
         .lightbox {
             display: none;
             position: fixed;
@@ -155,42 +151,12 @@
             cursor: pointer;
         }
         
-        .lightbox.active {
-            display: flex;
-        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 80%; object-fit: contain; border-radius: 16px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2rem; cursor: pointer; transition: 0.3s; }
+        .lightbox-close:hover { color: var(--gold); }
+        .lightbox-caption { position: absolute; bottom: 30px; left: 0; right: 0; text-align: center; color: white; font-size: 1rem; }
         
-        .lightbox img {
-            max-width: 90%;
-            max-height: 80%;
-            object-fit: contain;
-            border-radius: 16px;
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        .lightbox-close:hover {
-            color: var(--gold);
-        }
-        
-        .lightbox-caption {
-            position: absolute;
-            bottom: 30px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: white;
-            font-size: 1rem;
-        }
-        
-        /* Button Styles */
         .btn-modern {
             display: inline-block;
             padding: 1rem 2.5rem;
@@ -211,7 +177,6 @@
             box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
         }
         
-        /* Logo size */
         .logo-image {
             height: 70px;
             width: auto;
@@ -220,60 +185,43 @@
         }
         
         @media (max-width: 768px) {
-            .logo-image {
-                height: 50px;
-                max-width: 160px;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 1rem;
-            }
+            .logo-image { height: 50px; max-width: 160px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
             .overlay-title { font-size: 0.9rem; }
             .overlay-subtitle { font-size: 0.6rem; }
         }
         
-        @keyframes ping {
-            75%, 100% { transform: scale(2); opacity: 0; }
-        }
+        @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
         .animate-ping { animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
     </style>
 </head>
 <body>
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#D4A396] text-black px-4 py-2 font-bold uppercase tracking-widest text-xs z-[300] rounded-full">Skip to main content</a>
 
-    <!-- Modern Navigation -->
     <nav class="fixed w-full z-[200] py-3 md:py-4 px-6 md:px-10 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-[#D4A396]/10 shadow-sm">
-        <a href="index.html" class="flex items-center">
-            <img src="logo1.png" alt="Brow Queen Luxury Eyebrow Artistry Studio Logo" class="logo-image" loading="eager" decoding="async" />
-        </a>
+        <a href="index.html" class="flex items-center"><img src="images/logo1.png" alt="Brow Queen Luxury Eyebrow Artistry Studio Logo" class="logo-image" loading="eager" decoding="async" /></a>
         <div class="hidden md:flex space-x-8 lg:space-x-10 text-[11px] uppercase tracking-[0.2em] items-center font-semibold">
             <a href="index.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Home</a>
-                     <a href="about.html" class="text-[#2C2421] hover:text-[#D4A396] transition">About</a>
+            <a href="about.html" class="text-[#2C2421] hover:text-[#D4A396] transition">About</a>
             <a href="services.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Services</a>
-   
             <a href="gallery.html" class="text-[#D4A396] hover:text-[#D4A396] transition">Gallery</a>
             <a href="contact.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Contact</a>
             <a href="https://wa.me/27746442787" target="_blank" class="bg-[#D4A396] text-white px-6 py-2.5 font-bold text-xs tracking-wider hover:bg-[#2C2421] transition rounded-full">Book Now</a>
         </div>
-        <button id="menu-toggle" class="md:hidden text-[#D4A396] p-2">
-            <i data-lucide="menu" id="menu-icon"></i>
-        </button>
+        <button id="menu-toggle" class="md:hidden text-[#D4A396] p-2"><i data-lucide="menu" id="menu-icon"></i></button>
     </nav>
 
     <main id="main-content"></main>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col justify-center items-center space-y-8 text-center transition-transform duration-500 ease-in-out shadow-xl">
         <a href="index.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Home</a>
-         <a href="about.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">About</a>
+        <a href="about.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">About</a>
         <a href="services.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Services</a>
-       
         <a href="gallery.html" class="text-[#D4A396] text-xl font-serif tracking-widest uppercase">Gallery</a>
         <a href="contact.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Contact</a>
         <a href="https://wa.me/27746442787" class="bg-[#D4A396] text-white px-8 py-3 font-bold uppercase tracking-widest mt-4 rounded-full">Book Now</a>
     </div>
 
-    <!-- Hero Section -->
     <section class="pt-32 md:pt-40 pb-16 px-6 md:px-10 text-center bg-gradient-to-b from-[#FAF4EF] to-white">
         <div class="max-w-3xl mx-auto">
             <span class="text-[#D4A396] uppercase tracking-[0.3em] text-xs font-semibold mb-4 block animate-pulse">Our Portfolio</span>
@@ -282,7 +230,6 @@
         </div>
     </section>
 
-    <!-- Category Filters -->
     <section class="px-6 md:px-10 pt-4 pb-8">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-wrap justify-center gap-3">
@@ -294,181 +241,60 @@
         </div>
     </section>
 
-    <!-- Gallery Grid -->
     <section class="px-6 md:px-10 pb-20">
         <div class="max-w-7xl mx-auto">
             <div class="gallery-grid" id="gallery-grid">
-                <!-- Microblading -->
-                <div class="gallery-card" data-category="permanent">
-                    <img src="image 5.jpg" alt="Microblading transformation by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Microblading</div>
-                        <div class="overlay-subtitle">Natural Hair Strokes</div>
-                    </div>
-                </div>
-                
-                <!-- Ombre Shading -->
-                <div class="gallery-card" data-category="permanent">
-                    <img src="image 6.jpg" alt="Ombré Shading transformation by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Ombré Shading</div>
-                        <div class="overlay-subtitle">Soft Powder Finish</div>
-                    </div>
-                </div>
-                
-                <!-- Brow Threading -->
-                <div class="gallery-card" data-category="shaping">
-                    <img src="image 7.jpg" alt="Precision Brow Threading by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Brow Threading</div>
-                        <div class="overlay-subtitle">Precision Removal</div>
-                    </div>
-                </div>
-                
-                <!-- Brow Tinting -->
-                <div class="gallery-card" data-category="shaping">
-                    <img src="image 8.jpg" alt="Brow Tinting results by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Brow Tinting</div>
-                        <div class="overlay-subtitle">Depth & Definition</div>
-                    </div>
-                </div>
-                
-                <!-- Lamination -->
-                <div class="gallery-card" data-category="lamination">
-                    <img src="image 9.webp" alt="Brow Lamination transformation by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Lamination</div>
-                        <div class="overlay-subtitle">Sleek & Fluffy</div>
-                    </div>
-                </div>
-                
-                <!-- Hybrid Brows -->
-                <div class="gallery-card" data-category="shaping">
-                    <img src="image 10.jpg" alt="Hybrid Brows transformation by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Hybrid Brows</div>
-                        <div class="overlay-subtitle">Best of Both</div>
-                    </div>
-                </div>
-                
-                <!-- Symmetry Mapping -->
-                <div class="gallery-card" data-category="shaping">
-                    <img src="image 11.jpg" alt="Signature Symmetry Mapping by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Mapping</div>
-                        <div class="overlay-subtitle">Symmetry Design</div>
-                    </div>
-                </div>
-                
-                <!-- Brow Sculpting -->
-                <div class="gallery-card" data-category="shaping">
-                    <img src="image 12.jpg" alt="Elite Brow Sculpting by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Sculpting</div>
-                        <div class="overlay-subtitle">Artistic Shape</div>
-                    </div>
-                </div>
-                
-                <!-- Henna Brows -->
-                <div class="gallery-card" data-category="shaping">
-                    <img src="image 13.jpg" alt="Henna Brows by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Henna Stain</div>
-                        <div class="overlay-subtitle">Long-wear Tint</div>
-                    </div>
-                </div>
-                
-                <!-- Final Reveal -->
-                <div class="gallery-card" data-category="permanent">
-                    <img src="image 14.webp" alt="Final Reveal transformation by Brow Queen">
-                    <div class="card-overlay">
-                        <div class="overlay-title">Final Reveal</div>
-                        <div class="overlay-subtitle">Royal Results</div>
-                    </div>
-                </div>
+                <div class="gallery-card" data-category="permanent"><img src="images/image5.jpg" alt="Microblading transformation"><div class="card-overlay"><div class="overlay-title">Microblading</div><div class="overlay-subtitle">Natural Hair Strokes</div></div></div>
+                <div class="gallery-card" data-category="permanent"><img src="images/image6.jpg" alt="Ombré Shading"><div class="card-overlay"><div class="overlay-title">Ombré Shading</div><div class="overlay-subtitle">Soft Powder Finish</div></div></div>
+                <div class="gallery-card" data-category="shaping"><img src="images/image7.jpg" alt="Brow Threading"><div class="card-overlay"><div class="overlay-title">Brow Threading</div><div class="overlay-subtitle">Precision Removal</div></div></div>
+                <div class="gallery-card" data-category="shaping"><img src="images/image8.jpg" alt="Brow Tinting"><div class="card-overlay"><div class="overlay-title">Brow Tinting</div><div class="overlay-subtitle">Depth & Definition</div></div></div>
+                <div class="gallery-card" data-category="lamination"><img src="images/image9.webp" alt="Brow Lamination"><div class="card-overlay"><div class="overlay-title">Lamination</div><div class="overlay-subtitle">Sleek & Fluffy</div></div></div>
+                <div class="gallery-card" data-category="shaping"><img src="images/image10.jpg" alt="Hybrid Brows"><div class="card-overlay"><div class="overlay-title">Hybrid Brows</div><div class="overlay-subtitle">Best of Both</div></div></div>
+                <div class="gallery-card" data-category="shaping"><img src="images/image11.jpg" alt="Symmetry Mapping"><div class="card-overlay"><div class="overlay-title">Mapping</div><div class="overlay-subtitle">Symmetry Design</div></div></div>
+                <div class="gallery-card" data-category="shaping"><img src="images/image12.jpg" alt="Brow Sculpting"><div class="card-overlay"><div class="overlay-title">Sculpting</div><div class="overlay-subtitle">Artistic Shape</div></div></div>
+                <div class="gallery-card" data-category="shaping"><img src="images/image13.jpg" alt="Henna Brows"><div class="card-overlay"><div class="overlay-title">Henna Stain</div><div class="overlay-subtitle">Long-wear Tint</div></div></div>
+                <div class="gallery-card" data-category="permanent"><img src="images/image14.webp" alt="Final Reveal"><div class="card-overlay"><div class="overlay-title">Final Reveal</div><div class="overlay-subtitle">Royal Results</div></div></div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="py-20 px-6 md:px-10 bg-[#FAF4EF]">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-2xl md:text-3xl font-serif mb-4">Ready for Your Transformation?</h2>
             <p class="text-[#8B7E78] mb-8 max-w-md mx-auto">Book your consultation and let us create your perfect brows.</p>
             <div class="flex flex-wrap gap-4 justify-center">
                 <a href="contact.html" class="btn-modern">Book Appointment</a>
-                <a href="services.html" class="btn-outline-modern" style="display: inline-block; padding: 1rem 2.5rem; background: transparent; color: var(--gold); border: 2px solid var(--gold); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 3px; font-weight: 600; border-radius: 40px; transition: all 0.3s ease; text-decoration: none;">View Services</a>
+                <a href="services.html" style="display: inline-block; padding: 1rem 2.5rem; background: transparent; color: var(--gold); border: 2px solid var(--gold); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 3px; font-weight: 600; border-radius: 40px; transition: all 0.3s ease; text-decoration: none;">View Services</a>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="">
-        <div id="lightbox-caption" class="lightbox-caption"></div>
-    </div>
+    <div id="lightbox" class="lightbox"><span class="lightbox-close">&times;</span><img id="lightbox-img" src=""><div id="lightbox-caption" class="lightbox-caption"></div></div>
 
-    <!-- WhatsApp Button -->
     <a href="https://wa.me/27746442787" target="_blank" class="whatsapp-btn fixed bottom-8 right-8 z-[100] group">
         <div class="absolute inset-0 bg-[#D4A396] rounded-full animate-ping opacity-20"></div>
         <div class="relative bg-white border border-[#D4A396] p-3 rounded-full shadow-lg transition-all duration-500 group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A396" stroke-width="2">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A396" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
         </div>
     </a>
 
-    <!-- Footer -->
     <footer class="bg-[#2C2421] pt-16 pb-8 px-6 md:px-10">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-                <div>
-                    <h3 class="text-2xl font-serif text-[#D4A396] mb-4">Brow Queen</h3>
-                    <p class="text-[#A89A94] text-sm leading-relaxed">Luxury eyebrow artistry studio in Durban. Precision, symmetry, and confidence.</p>
-                </div>
-                <div>
-                    <h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Quick Links</h4>
-                    <ul class="space-y-2 text-[#A89A94] text-sm">
-                        <li><a href="index.html" class="hover:text-[#D4A396] transition">Home</a></li>
-                        <li><a href="services.html" class="hover:text-[#D4A396] transition">Services</a></li>
-                        <li><a href="about.html" class="hover:text-[#D4A396] transition">About Us</a></li>
-                        <li><a href="gallery.html" class="hover:text-[#D4A396] transition">Gallery</a></li>
-                        <li><a href="contact.html" class="hover:text-[#D4A396] transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Contact</h4>
-                    <ul class="space-y-2 text-[#A89A94] text-sm">
-                        <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 72 Rosetta Road, Windermere</li>
-                        <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +27 74 644 2787</li>
-                        <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Kippenodelia032@gmail.com</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Hours</h4>
-                    <ul class="space-y-2 text-[#A89A94] text-sm">
-                        <li>Monday - Saturday: 09:00 - 18:00</li>
-                        <li>Sunday: Closed</li>
-                    </ul>
-                </div>
+                <div><h3 class="text-2xl font-serif text-[#D4A396] mb-4">Brow Queen</h3><p class="text-[#A89A94] text-sm leading-relaxed">Luxury eyebrow artistry studio in Durban.</p></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Quick Links</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li><a href="index.html" class="hover:text-[#D4A396] transition">Home</a></li><li><a href="services.html" class="hover:text-[#D4A396] transition">Services</a></li><li><a href="about.html" class="hover:text-[#D4A396] transition">About Us</a></li><li><a href="gallery.html" class="hover:text-[#D4A396] transition">Gallery</a></li><li><a href="contact.html" class="hover:text-[#D4A396] transition">Contact</a></li></ul></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Contact</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 72 Rosetta Road, Windermere</li><li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +27 74 644 2787</li><li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Kippenodelia032@gmail.com</li></ul></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5 font-semibold">Hours</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li>Monday - Saturday: 09:00 - 18:00</li><li>Sunday: Closed</li></ul></div>
             </div>
-            <div class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3">
-                <p class="text-[#A89A94] text-xs">© 2026 Brow Queen. All Rights Reserved.</p>
-                <p class="text-[#8B7E78] text-xs">Developed by <a href="https://afribizconnect.co.za/" target="_blank" class="text-[#D4A396] hover:text-white transition">Afribiz Connect</a></p>
-            </div>
+            <div class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3"><p class="text-[#A89A94] text-xs">© 2026 Brow Queen. All Rights Reserved.</p><p class="text-[#8B7E78] text-xs">Developed by <a href="https://afribizconnect.co.za/" target="_blank" class="text-[#D4A396] hover:text-white transition">Afribiz Connect</a></p></div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
-        
-        // Mobile Menu
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
-
         if (menuToggle && mobileMenu) {
             menuToggle.addEventListener('click', () => {
                 mobileMenu.classList.toggle('translate-x-full');
@@ -478,7 +304,6 @@
                 document.body.style.overflow = isOpen ? 'hidden' : 'auto';
             });
         }
-
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('translate-x-full');
@@ -487,83 +312,47 @@
                 lucide.createIcons();
             });
         });
-        
-        // Category Filter Functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
         const galleryItems = document.querySelectorAll('.gallery-card');
-        
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
                 const filter = btn.getAttribute('data-filter');
-                
                 galleryItems.forEach(item => {
                     if (filter === 'all' || item.getAttribute('data-category') === filter) {
                         item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'scale(1)';
-                        }, 10);
+                        setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 10);
                     } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'scale(0.8)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
+                        item.style.opacity = '0'; item.style.transform = 'scale(0.8)';
+                        setTimeout(() => { item.style.display = 'none'; }, 300);
                     }
                 });
             });
         });
-        
-        // Lightbox Functionality
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
         const closeBtn = document.querySelector('.lightbox-close');
-        
         document.querySelectorAll('.gallery-card').forEach(card => {
             card.addEventListener('click', () => {
                 const img = card.querySelector('img');
                 const title = card.querySelector('.overlay-title')?.innerText || 'Brow Queen Transformation';
                 const subtitle = card.querySelector('.overlay-subtitle')?.innerText || '';
-                
                 lightboxImg.src = img.src;
                 lightboxCaption.innerHTML = `${title} — ${subtitle}`;
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
         });
-        
-        closeBtn.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-        
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Scroll animations
-        const observerOptions = { threshold: 0.1, rootMargin: '0px' };
+        closeBtn.addEventListener('click', () => { lightbox.classList.remove('active'); document.body.style.overflow = 'auto'; });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) { lightbox.classList.remove('active'); document.body.style.overflow = 'auto'; } });
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
         }, observerOptions);
-        
         document.querySelectorAll('.gallery-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.5s ease';
-            observer.observe(el);
+            el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'all 0.5s ease'; observer.observe(el);
         });
     </script>
 </body>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Brow Queen</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+        
+        :root { 
+            --gold: #D4A396;
+            --gold-dark: #B8877A;
+            --text-dark: #2C2421;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #F5F0EB;
+        }
+        
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 260px;
+            background: white;
+            border-right: 1px solid #E8E0DB;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .main-content {
+            margin-left: 260px;
+            padding: 1.5rem;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            color: #6B5E58;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: #FAF4EF;
+            color: var(--gold);
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid #E8E0DB;
+        }
+        
+        .bookings-table {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #E8E0DB;
+            overflow-x: auto;
+        }
+        
+        .bookings-table th {
+            text-align: left;
+            padding: 1rem;
+            background: #FAF4EF;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6B5E58;
+        }
+        
+        .bookings-table td {
+            padding: 1rem;
+            border-top: 1px solid #E8E0DB;
+            font-size: 0.875rem;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .status-pending { background: #FEF3C7; color: #D97706; }
+        .status-confirmed { background: #D1FAE5; color: #059669; }
+        .status-cancelled { background: #FEE2E2; color: #DC2626; }
+        
+        .btn-sm {
+            padding: 0.25rem 0.75rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            margin: 0 0.25rem;
+        }
+        
+        .btn-confirm { background: #059669; color: white; }
+        .btn-cancel { background: #DC2626; color: white; }
+        .btn-refresh { background: var(--gold); color: white; }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .logo-image {
+            height: 45px;
+            width: auto;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; }
+        }
+        
+        .btn-modern {
+            padding: 0.75rem 1.5rem;
+            background: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-modern:hover {
+            background: var(--text-dark);
+        }
+        
+        .input-field {
+            padding: 0.5rem 1rem;
+            border: 1px solid #E8E0DB;
+            border-radius: 12px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="flex items-center gap-3 mb-8 pb-4 border-b border-[#E8E0DB]">
+            <img src="immages/logo1.png" alt="Brow Queen" class="logo-image">
+        </div>
+        
+        <div class="space-y-2">
+            <div class="nav-item active" data-tab="dashboard">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" data-tab="bookings">
+                <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                <span>All Bookings</span>
+            </div>
+            <div class="nav-item" data-tab="schedule">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+                <span>Schedule Settings</span>
+            </div>
+            <div class="nav-item" data-tab="blocked-dates">
+                <i data-lucide="calendar-x" class="w-5 h-5"></i>
+                <span>Blocked Dates</span>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-6 left-6 right-6">
+            <div class="nav-item" id="logout-btn">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Logout</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="font-serif text-2xl" id="page-title">Dashboard</h1>
+            <div class="flex items-center gap-3">
+                <span class="text-sm text-[#6B5E58]" id="admin-email-display"></span>
+                <button id="refresh-data" class="btn-sm btn-refresh">Refresh</button>
+            </div>
+        </div>
+        
+        <!-- Dashboard Tab -->
+        <div id="dashboard-tab">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="stat-card"><div class="flex justify-between items-start"><div><p class="text-[#8B7E78] text-sm">Total Bookings</p><p class="text-3xl font-serif font-bold text-[#2C2421]" id="total-bookings">0</p></div><i data-lucide="calendar" class="w-8 h-8 text-[#D4A396] opacity-50"></i></div></div>
+                <div class="stat-card"><div class="flex justify-between items-start"><div><p class="text-[#8B7E78] text-sm">Pending</p><p class="text-3xl font-serif font-bold text-[#F59E0B]" id="pending-bookings">0</p></div><i data-lucide="clock" class="w-8 h-8 text-[#F59E0B] opacity-50"></i></div></div>
+                <div class="stat-card"><div class="flex justify-between items-start"><div><p class="text-[#8B7E78] text-sm">Confirmed</p><p class="text-3xl font-serif font-bold text-[#059669]" id="confirmed-bookings">0</p></div><i data-lucide="check-circle" class="w-8 h-8 text-[#059669] opacity-50"></i></div></div>
+                <div class="stat-card"><div class="flex justify-between items-start"><div><p class="text-[#8B7E78] text-sm">Total Revenue</p><p class="text-3xl font-serif font-bold text-[#D4A396]" id="total-revenue">R0</p></div><i data-lucide="trending-up" class="w-8 h-8 text-[#D4A396] opacity-50"></i></div></div>
+            </div>
+            
+            <div class="bookings-table">
+                <table class="w-full">
+                    <thead><tr><th>Booking #</th><th>Customer</th><th>Service</th><th>Date</th><th>Time</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+                    <tbody id="recent-bookings-table"><tr><td colspan="8" class="text-center text-[#A89A94] py-8">Loading bookings...<div class="loading-spinner mx-auto mt-2"></div></td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- All Bookings Tab -->
+        <div id="bookings-tab" style="display: none;">
+            <div class="flex flex-wrap gap-4 mb-6">
+                <input type="text" id="search-bookings" placeholder="Search by name, email, or booking #" class="flex-1 px-4 py-2 border border-[#E8E0DB] rounded-xl">
+                <select id="status-filter" class="px-4 py-2 border border-[#E8E0DB] rounded-xl"><option value="all">All Status</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="cancelled">Cancelled</option></select>
+                <input type="date" id="date-filter" class="px-4 py-2 border border-[#E8E0DB] rounded-xl">
+                <button id="clear-filters" class="px-4 py-2 bg-gray-100 rounded-xl">Clear</button>
+            </div>
+            
+            <div class="bookings-table">
+                <table class="w-full">
+                    <thead><tr><th>Booking #</th><th>Customer</th><th>Email</th><th>Phone</th><th>Service</th><th>Date</th><th>Time</th><th>Participants</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+                    <tbody id="all-bookings-table"><tr><td colspan="11" class="text-center text-[#A89A94] py-8">Loading bookings...<div class="loading-spinner mx-auto mt-2"></div></td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Schedule Settings Tab -->
+        <div id="schedule-tab" style="display: none;">
+            <div class="stat-card mb-6">
+                <h3 class="font-serif text-lg mb-4">Operating Hours</h3>
+                <div id="operating-hours" class="space-y-3"></div>
+                <button id="save-hours" class="mt-4 btn-modern">Save Changes</button>
+            </div>
+            
+            <div class="stat-card">
+                <h3 class="font-serif text-lg mb-4">Time Slot Duration</h3>
+                <div class="flex items-center gap-4">
+                    <label class="text-[#8B7E78]">Slot Duration (minutes):</label>
+                    <select id="slot-duration" class="px-4 py-2 border border-[#E8E0DB] rounded-xl">
+                        <option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60">60 minutes</option><option value="90">90 minutes</option><option value="120">120 minutes</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Blocked Dates Tab -->
+        <div id="blocked-dates-tab" style="display: none;">
+            <div class="stat-card mb-6">
+                <h3 class="font-serif text-lg mb-4">Block a Date</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="date" id="block-date" class="input-field">
+                    <input type="text" id="block-reason" placeholder="Reason (e.g., Holiday, Training)" class="input-field">
+                </div>
+                <button id="add-blocked-date" class="mt-4 btn-modern">Block Date</button>
+            </div>
+            
+            <div class="bookings-table">
+                <table class="w-full">
+                    <thead><tr><th>Date</th><th>Reason</th><th>Actions</th></tr></thead>
+                    <tbody id="blocked-dates-table"><tr><td colspan="3" class="text-center text-[#A89A94] py-8">No blocked dates</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="action-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title" class="font-serif text-xl mb-4">Confirm Action</h3>
+            <p id="modal-message" class="mb-6"></p>
+            <div class="flex gap-3">
+                <button id="modal-confirm" class="flex-1 bg-[#D4A396] text-white py-2 rounded-full">Confirm</button>
+                <button id="modal-cancel" class="flex-1 border border-[#E8E0DB] py-2 rounded-full">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        const API_BASE = 'http://localhost:5000';
+        
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            window.location.href = 'admin-login.html';
+        }
+        
+        document.getElementById('admin-email-display').textContent = localStorage.getItem('adminEmail') || 'admin@browqueen.co.za';
+        
+        let currentBookings = [];
+        
+        async function fetchBookings() {
+            try {
+                const response = await fetch(`${API_BASE}/api/admin/bookings`);
+                if (!response.ok) throw new Error('Failed to fetch bookings');
+                const bookings = await response.json();
+                currentBookings = bookings;
+                return bookings;
+            } catch (error) {
+                console.error('Error fetching bookings:', error);
+                return [];
+            }
+        }
+        
+        async function loadDashboard() {
+            try {
+                const bookings = await fetchBookings();
+                const total = bookings.length;
+                const pending = bookings.filter(b => b.status === 'pending').length;
+                const confirmed = bookings.filter(b => b.status === 'confirmed').length;
+                const revenue = bookings.filter(b => b.status === 'confirmed').reduce((sum, b) => sum + (b.price || 0), 0);
+                
+                document.getElementById('total-bookings').textContent = total;
+                document.getElementById('pending-bookings').textContent = pending;
+                document.getElementById('confirmed-bookings').textContent = confirmed;
+                document.getElementById('total-revenue').textContent = `R${revenue.toLocaleString()}`;
+                
+                const recent = [...bookings].reverse().slice(0, 5);
+                const tableBody = document.getElementById('recent-bookings-table');
+                
+                if (recent.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="8" class="text-center text-[#A89A94] py-8">No bookings yet</td></tr>';
+                } else {
+                    tableBody.innerHTML = recent.map(booking => `
+                        <tr>
+                            <td class="font-mono text-xs">${booking.booking_number || 'N/A'}</td>
+                            <td>${booking.customer_name || 'N/A'}</td>
+                            <td>${booking.service_name || 'N/A'}</td>
+                            <td>${booking.appointment_date || 'N/A'}</td>
+                            <td>${booking.appointment_time || 'N/A'}</td>
+                            <td>R${(booking.price || 0).toLocaleString()}</td>
+                            <td><span class="status-badge status-${booking.status}">${booking.status}</span></td>
+                            <td>
+                                ${booking.status === 'pending' ? `<button class="btn-sm btn-confirm" onclick="updateBookingStatus(${booking.id}, 'confirmed')">Confirm</button>` : ''}
+                                ${booking.status !== 'cancelled' ? `<button class="btn-sm btn-cancel" onclick="updateBookingStatus(${booking.id}, 'cancelled')">Cancel</button>` : ''}
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+        
+        async function loadAllBookings() {
+            try {
+                let bookings = await fetchBookings();
+                const searchTerm = document.getElementById('search-bookings')?.value.toLowerCase() || '';
+                const statusFilter = document.getElementById('status-filter')?.value || 'all';
+                const dateFilter = document.getElementById('date-filter')?.value || '';
+                
+                if (searchTerm) {
+                    bookings = bookings.filter(b => 
+                        (b.customer_name || '').toLowerCase().includes(searchTerm) ||
+                        (b.customer_email || '').toLowerCase().includes(searchTerm) ||
+                        (b.booking_number || '').toLowerCase().includes(searchTerm)
+                    );
+                }
+                if (statusFilter !== 'all') bookings = bookings.filter(b => b.status === statusFilter);
+                if (dateFilter) bookings = bookings.filter(b => b.appointment_date === dateFilter);
+                
+                const tableBody = document.getElementById('all-bookings-table');
+                if (bookings.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="11" class="text-center text-[#A89A94] py-8">No bookings found</td></tr>';
+                } else {
+                    tableBody.innerHTML = bookings.map(booking => `
+                        <tr>
+                            <td class="font-mono text-xs">${booking.booking_number || 'N/A'}</td>
+                            <td>${booking.customer_name || 'N/A'}</td>
+                            <td>${booking.customer_email || 'N/A'}</td>
+                            <td>${booking.customer_phone || 'N/A'}</td>
+                            <td>${booking.service_name || 'N/A'}</td>
+                            <td>${booking.appointment_date || 'N/A'}</td>
+                            <td>${booking.appointment_time || 'N/A'}</td>
+                            <td>${booking.participants || 1}</td>
+                            <td>R${(booking.price || 0).toLocaleString()}</td>
+                            <td><span class="status-badge status-${booking.status}">${booking.status}</span></td>
+                            <td>
+                                ${booking.status === 'pending' ? `<button class="btn-sm btn-confirm" onclick="updateBookingStatus(${booking.id}, 'confirmed')">Confirm</button>` : ''}
+                                ${booking.status !== 'cancelled' ? `<button class="btn-sm btn-cancel" onclick="updateBookingStatus(${booking.id}, 'cancelled')">Cancel</button>` : ''}
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading bookings:', error);
+            }
+        }
+        
+        window.updateBookingStatus = async (bookingId, status) => {
+            showModal(`Confirm ${status} this booking?`, async () => {
+                try {
+                    const response = await fetch(`${API_BASE}/api/admin/bookings/${bookingId}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ status })
+                    });
+                    if (response.ok) {
+                        await loadDashboard();
+                        await loadAllBookings();
+                        closeModal();
+                        alert(`Booking ${status} successfully!`);
+                    } else {
+                        alert('Error updating booking status');
+                    }
+                } catch (error) {
+                    console.error('Error updating status:', error);
+                    alert('Error connecting to server');
+                }
+            });
+        };
+        
+        let modalCallback = null;
+        function showModal(message, onConfirm) {
+            document.getElementById('modal-message').textContent = message;
+            modalCallback = onConfirm;
+            document.getElementById('action-modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('action-modal').classList.remove('active');
+            modalCallback = null;
+        }
+        document.getElementById('modal-confirm').addEventListener('click', () => { if (modalCallback) modalCallback(); closeModal(); });
+        document.getElementById('modal-cancel').addEventListener('click', closeModal);
+        
+        // Tab switching
+        const tabs = document.querySelectorAll('.nav-item[data-tab]');
+        const tabContents = {
+            dashboard: document.getElementById('dashboard-tab'),
+            bookings: document.getElementById('bookings-tab'),
+            schedule: document.getElementById('schedule-tab'),
+            'blocked-dates': document.getElementById('blocked-dates-tab')
+        };
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+                if (!tabName) return;
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                Object.values(tabContents).forEach(content => { if (content) content.style.display = 'none'; });
+                if (tabContents[tabName]) {
+                    tabContents[tabName].style.display = 'block';
+                    document.getElementById('page-title').textContent = tab.textContent.trim();
+                }
+                if (tabName === 'bookings') loadAllBookings();
+            });
+        });
+        
+        document.getElementById('search-bookings')?.addEventListener('input', () => loadAllBookings());
+        document.getElementById('status-filter')?.addEventListener('change', () => loadAllBookings());
+        document.getElementById('date-filter')?.addEventListener('change', () => loadAllBookings());
+        document.getElementById('clear-filters')?.addEventListener('click', () => {
+            document.getElementById('search-bookings').value = '';
+            document.getElementById('status-filter').value = 'all';
+            document.getElementById('date-filter').value = '';
+            loadAllBookings();
+        });
+        document.getElementById('refresh-data')?.addEventListener('click', () => { loadDashboard(); loadAllBookings(); });
+        
+        // ============ SETTINGS API FUNCTIONS ============
+        async function fetchSettings() {
+            try {
+                const response = await fetch(`${API_BASE}/api/admin/settings`);
+                if (!response.ok) throw new Error('Failed to fetch settings');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching settings:', error);
+                return null;
+            }
+        }
+        
+        async function saveOperatingHoursToBackend(hours) {
+            try {
+                const response = await fetch(`${API_BASE}/api/admin/settings/hours`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ hours })
+                });
+                return response.ok;
+            } catch (error) {
+                console.error('Error saving hours:', error);
+                return false;
+            }
+        }
+        
+        async function addBlockedDateToBackend(date, reason) {
+            try {
+                const response = await fetch(`${API_BASE}/api/admin/settings/blocked-dates`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ date, reason })
+                });
+                return response.ok;
+            } catch (error) {
+                console.error('Error adding blocked date:', error);
+                return false;
+            }
+        }
+        
+        async function removeBlockedDateFromBackend(date) {
+            try {
+                const response = await fetch(`${API_BASE}/api/admin/settings/blocked-dates/${date}`, {
+                    method: 'DELETE'
+                });
+                return response.ok;
+            } catch (error) {
+                console.error('Error removing blocked date:', error);
+                return false;
+            }
+        }
+        
+        async function saveSlotDurationToBackend(duration) {
+            try {
+                const response = await fetch(`${API_BASE}/api/admin/settings/slot-duration`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ duration })
+                });
+                return response.ok;
+            } catch (error) {
+                console.error('Error saving slot duration:', error);
+                return false;
+            }
+        }
+        
+        async function loadOperatingHours() {
+            const settings = await fetchSettings();
+            if (!settings) return;
+            const hours = settings.operatingHours;
+            const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+            const container = document.getElementById('operating-hours');
+            container.innerHTML = days.map(day => `
+                <div class="flex flex-wrap items-center gap-4 p-3 border-b border-[#E8E0DB]">
+                    <label class="w-28 capitalize font-medium">${day}</label>
+                    <input type="checkbox" class="day-enabled" data-day="${day}" ${hours[day]?.enabled ? 'checked' : ''}>
+                    <span class="text-[#8B7E78]">Open</span>
+                    <input type="time" class="day-start px-3 py-1 border rounded-lg" data-day="${day}" value="${hours[day]?.start || '09:00'}" ${!hours[day]?.enabled ? 'disabled' : ''}>
+                    <span>to</span>
+                    <input type="time" class="day-end px-3 py-1 border rounded-lg" data-day="${day}" value="${hours[day]?.end || '18:00'}" ${!hours[day]?.enabled ? 'disabled' : ''}>
+                </div>
+            `).join('');
+            document.querySelectorAll('.day-enabled').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const day = e.target.dataset.day;
+                    const startInput = document.querySelector(`.day-start[data-day="${day}"]`);
+                    const endInput = document.querySelector(`.day-end[data-day="${day}"]`);
+                    startInput.disabled = !e.target.checked;
+                    endInput.disabled = !e.target.checked;
+                });
+            });
+        }
+        
+        document.getElementById('save-hours')?.addEventListener('click', async () => {
+            const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+            const hours = {};
+            days.forEach(day => {
+                hours[day] = {
+                    enabled: document.querySelector(`.day-enabled[data-day="${day}"]`).checked,
+                    start: document.querySelector(`.day-start[data-day="${day}"]`).value,
+                    end: document.querySelector(`.day-end[data-day="${day}"]`).value
+                };
+            });
+            const success = await saveOperatingHoursToBackend(hours);
+            alert(success ? 'Operating hours saved successfully!' : 'Error saving operating hours');
+        });
+        
+        async function loadBlockedDates() {
+            const settings = await fetchSettings();
+            if (!settings) return;
+            const blockedDates = settings.blockedDates;
+            const tableBody = document.getElementById('blocked-dates-table');
+            if (blockedDates.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="3" class="text-center text-[#A89A94] py-8">No blocked dates</td></tr>';
+            } else {
+                tableBody.innerHTML = blockedDates.map((item) => `
+                    <tr><td>${item.date}</td><td>${item.reason || 'No reason'}</td><td><button class="text-red-500" onclick="removeBlockedDate('${item.date}')">Remove</button></td></tr>
+                `).join('');
+            }
+        }
+        
+        window.removeBlockedDate = async (date) => {
+            const success = await removeBlockedDateFromBackend(date);
+            if (success) { loadBlockedDates(); alert('Date unblocked successfully!'); }
+            else { alert('Error removing blocked date'); }
+        };
+        
+        document.getElementById('add-blocked-date')?.addEventListener('click', async () => {
+            const date = document.getElementById('block-date').value;
+            const reason = document.getElementById('block-reason').value;
+            if (date) {
+                const success = await addBlockedDateToBackend(date, reason);
+                if (success) { loadBlockedDates(); document.getElementById('block-date').value = ''; document.getElementById('block-reason').value = ''; alert('Date blocked successfully!'); }
+                else { alert('Error blocking date'); }
+            } else { alert('Please select a date'); }
+        });
+        
+        async function loadSlotDuration() {
+            const settings = await fetchSettings();
+            if (settings && document.getElementById('slot-duration')) {
+                document.getElementById('slot-duration').value = settings.slotDuration;
+            }
+        }
+        
+        document.getElementById('slot-duration')?.addEventListener('change', async (e) => {
+            const duration = parseInt(e.target.value);
+            const success = await saveSlotDurationToBackend(duration);
+            alert(success ? 'Time slot duration saved!' : 'Error saving slot duration');
+        });
+        
+        // Logout
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.removeItem('adminLoggedIn');
+            localStorage.removeItem('adminEmail');
+            window.location.href = 'admin-login.html';
+        });
+        
+        // Initialize
+        async function init() {
+            await loadDashboard();
+            await loadOperatingHours();
+            await loadBlockedDates();
+            await loadSlotDuration();
+        }
+        init();
+    </script>
+</body>
+</html>

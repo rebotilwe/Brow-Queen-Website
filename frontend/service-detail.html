@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Book Service | Brow Queen - Luxury Eyebrow Artistry</title>
+    <meta name="description" content="Book your luxury brow appointment online. Choose date, time, and complete your booking.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Book Service | Brow Queen">
+    <meta property="og:description" content="Book your luxury brow appointment online.">
+    <meta property="og:image" content="logo1.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+        
+        :root { 
+            --gold: #D4A396;
+            --gold-dark: #B8877A;
+            --gold-light: #E8C9C0;
+            --bg-light: #FDF8F5;
+            --bg-soft: #FAF4EF;
+            --text-dark: #2C2421;
+            --text-soft: #6B5E58;
+            --border-light: #E8E0DB;
+            --shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.05);
+            --shadow-md: 0 20px 40px -15px rgba(0,0,0,0.08);
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-light); 
+            color: var(--text-dark); 
+            overflow-x: hidden; 
+        }
+        
+        h1, h2, h3, .font-serif { 
+            font-family: 'Playfair Display', serif; 
+        }
+        
+        .text-gold { color: var(--gold); }
+        .bg-gold { background-color: var(--gold); }
+        
+        /* Progress Steps */
+        .step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            background: white;
+            border: 1px solid var(--border-light);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .step-item.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+        }
+        .step-item.completed {
+            background: var(--text-dark);
+            border-color: var(--text-dark);
+            color: white;
+        }
+        .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--border-light);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        .step-item.active .step-number,
+        .step-item.completed .step-number {
+            background: white;
+            color: var(--text-dark);
+        }
+        
+        /* Calendar Styles */
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            text-align: center;
+        }
+        .calendar-day-header {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-soft);
+            padding: 0.5rem;
+        }
+        .calendar-date {
+            padding: 0.75rem 0.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            background: white;
+            border: 1px solid var(--border-light);
+        }
+        .calendar-date:hover:not(.unavailable):not(.selected) {
+            border-color: var(--gold);
+            background: var(--gold-light);
+        }
+        .calendar-date.selected {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+        }
+        .calendar-date.unavailable {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        .calendar-date.today {
+            border-color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* Time Slots */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .time-slot {
+            padding: 0.75rem;
+            text-align: center;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+            border: 1px solid var(--border-light);
+            font-size: 0.8rem;
+        }
+        .time-slot:hover:not(.unavailable):not(.selected) {
+            border-color: var(--gold);
+            background: var(--gold-light);
+        }
+        .time-slot.selected {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+        }
+        .time-slot.unavailable {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        
+        /* Participant Selector */
+        .participant-selector {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            border: 1px solid var(--border-light);
+        }
+        .participant-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .participant-btn:hover:not(:disabled) {
+            background: var(--gold-light);
+        }
+        .participant-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .participant-count {
+            font-size: 1.5rem;
+            font-weight: 600;
+            min-width: 50px;
+            text-align: center;
+        }
+        .price-breakdown {
+            font-size: 0.7rem;
+            color: var(--text-soft);
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-light);
+        }
+        
+        /* Form Panel */
+        .booking-panel {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contact-input {
+            background: white;
+            border: 1px solid var(--border-light);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            width: 100%;
+            border-radius: 12px;
+            padding: 0.875rem 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .contact-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 163, 150, 0.15);
+            outline: none;
+        }
+        
+        .btn-modern {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gold);
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-modern:hover:not(:disabled) {
+            background: var(--text-dark);
+            transform: translateY(-3px);
+        }
+        
+        .btn-modern:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background: var(--gold);
+            color: white;
+        }
+        
+        .logo-image {
+            height: 70px;
+            width: auto;
+            max-width: 220px;
+            object-fit: contain;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-image { height: 50px; max-width: 160px; }
+            .booking-panel { padding: 1.25rem; }
+            .time-slots { grid-template-columns: repeat(2, 1fr); }
+            .calendar-grid { gap: 0.25rem; }
+            .calendar-date { padding: 0.5rem 0.25rem; font-size: 0.7rem; }
+            .step-item { padding: 0.25rem 0.75rem; font-size: 0.65rem; }
+        }
+        
+        @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+        .animate-ping { animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loader { animation: spin 0.8s linear infinite; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#D4A396] text-black px-4 py-2 font-bold uppercase tracking-widest text-xs z-[300] rounded-full">Skip to main content</a>
+
+    <nav class="fixed w-full z-[200] py-3 md:py-4 px-6 md:px-10 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-[#D4A396]/10 shadow-sm">
+        <a href="index.html" class="flex items-center"><img src="images/logo1.png" alt="Brow Queen Logo" class="logo-image" loading="eager" /></a>
+        <div class="hidden md:flex space-x-8 lg:space-x-10 text-[11px] uppercase tracking-[0.2em] items-center font-semibold">
+            <a href="index.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Home</a>
+            <a href="about.html" class="text-[#2C2421] hover:text-[#D4A396] transition">About</a>
+            <a href="services.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Services</a>
+            <a href="gallery.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Gallery</a>
+            <a href="contact.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Book</a>
+            <a href="https://wa.me/27746442787" target="_blank" class="bg-[#D4A396] text-white px-6 py-2.5 font-bold text-xs tracking-wider hover:bg-[#2C2421] transition rounded-full">Book Now</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-[#D4A396] p-2"><i data-lucide="menu" id="menu-icon"></i></button>
+    </nav>
+
+    <main id="main-content"></main>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col justify-center items-center space-y-8 text-center transition-transform duration-500 ease-in-out shadow-xl">
+        <a href="index.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Home</a>
+        <a href="about.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">About</a>
+        <a href="services.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Services</a>
+        <a href="gallery.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Gallery</a>
+        <a href="contact.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Book</a>
+        <a href="https://wa.me/27746442787" class="bg-[#D4A396] text-white px-8 py-3 font-bold uppercase tracking-widest mt-4 rounded-full">Book Now</a>
+    </div>
+
+    <!-- Service Details Header -->
+    <section class="pt-32 md:pt-40 pb-8 px-6 md:px-10 bg-gradient-to-b from-[#FAF4EF] to-white">
+        <div class="max-w-7xl mx-auto">
+            <a href="services.html" class="inline-flex items-center gap-2 text-[#8B7E78] hover:text-[#D4A396] transition mb-4">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to all services
+            </a>
+            <div id="service-info">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-serif mb-4 text-[#2C2421]" id="service-name">Loading...</h1>
+                <div class="flex flex-wrap gap-4 items-center mb-4">
+                    <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-[#D4A396]"></i><span id="service-duration">-- min</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="tag" class="w-4 h-4 text-[#D4A396]"></i><span id="service-price">R--</span></div>
+                </div>
+                <p id="service-description" class="text-[#5C524E] max-w-2xl">Select your preferred date and time to continue with your booking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Flow -->
+    <section class="px-6 md:px-10 pb-20">
+        <div class="max-w-5xl mx-auto">
+            <!-- Progress Steps -->
+            <div class="step">
+                <div class="step-item" id="step1-indicator">
+                    <span class="step-number">1</span> Date & Time
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-[#A89A94]"></i>
+                <div class="step-item" id="step2-indicator">
+                    <span class="step-number">2</span> Participants
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-[#A89A94]"></i>
+                <div class="step-item" id="step3-indicator">
+                    <span class="step-number">3</span> Your Details
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-[#A89A94]"></i>
+                <div class="step-item" id="step4-indicator">
+                    <span class="step-number">4</span> Confirmation
+                </div>
+            </div>
+
+            <!-- Step 1: Date & Time Selection -->
+            <div id="step1" class="booking-panel">
+                <h2 class="font-serif text-2xl mb-6">Select Date & Time</h2>
+                
+                <!-- Calendar -->
+                <div id="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prev-month" class="p-2 hover:bg-[#FAF4EF] rounded-full transition"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                        <h3 class="font-serif text-xl" id="month-year"></h3>
+                        <button id="next-month" class="p-2 hover:bg-[#FAF4EF] rounded-full transition"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid">
+                        <div class="calendar-day-header">Su</div>
+                        <div class="calendar-day-header">Mo</div>
+                        <div class="calendar-day-header">Tu</div>
+                        <div class="calendar-day-header">We</div>
+                        <div class="calendar-day-header">Th</div>
+                        <div class="calendar-day-header">Fr</div>
+                        <div class="calendar-day-header">Sa</div>
+                    </div>
+                </div>
+                
+                <!-- Time Slots -->
+                <div id="time-slots-container" class="mt-6">
+                    <h4 class="font-semibold mb-3">Available Time Slots</h4>
+                    <div id="time-slots" class="time-slots">
+                        <div class="text-center text-[#A89A94] py-4 col-span-3">Please select a date first</div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between mt-6 pt-4 border-t border-[#E8E0DB]">
+                    <a href="services.html" class="btn-outline btn-modern w-auto px-6">Cancel</a>
+                    <button id="to-step2" class="btn-modern w-auto px-8" disabled>Continue →</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Participants Selection -->
+            <div id="step2" class="booking-panel" style="display: none;">
+                <h2 class="font-serif text-2xl mb-6">Number of Participants</h2>
+                
+                <div class="participant-selector">
+                    <div class="flex items-center justify-between flex-wrap gap-4">
+                        <div class="flex items-center gap-4">
+                            <button id="decrement-participants" class="participant-btn">
+                                <i data-lucide="minus" class="w-4 h-4 text-[#D4A396]"></i>
+                            </button>
+                            <span id="participant-count" class="participant-count">1</span>
+                            <button id="increment-participants" class="participant-btn">
+                                <i data-lucide="plus" class="w-4 h-4 text-[#D4A396]"></i>
+                            </button>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm text-[#8B7E78]">Total Price</p>
+                            <p id="total-price" class="text-2xl font-serif text-[#D4A396]">R<span id="price-amount">0</span></p>
+                        </div>
+                    </div>
+                    <div class="price-breakdown">
+                        <span id="price-breakdown-text">Base price: R0 for 1 person</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-[#FAF4EF] rounded-xl">
+                    <p class="text-sm text-[#5C524E]">
+                        <i data-lucide="info" class="w-4 h-4 inline mr-1"></i> 
+                        Group bookings available! Each additional person receives the same service.
+                    </p>
+                </div>
+                
+                <div class="flex justify-between mt-6 pt-4 border-t border-[#E8E0DB]">
+                    <button id="back-to-step1" class="btn-outline btn-modern w-auto px-6">← Back</button>
+                    <button id="to-step3" class="btn-modern w-auto px-8">Continue →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Your Details -->
+            <div id="step3" class="booking-panel" style="display: none;">
+                <h2 class="font-serif text-2xl mb-6">Your Details</h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[11px] uppercase tracking-wider text-[#8B7E78] font-semibold block mb-1">Full Name *</label>
+                        <input type="text" id="fullName" required class="contact-input" placeholder="Your full name">
+                    </div>
+                    <div>
+                        <label class="text-[11px] uppercase tracking-wider text-[#8B7E78] font-semibold block mb-1">Email *</label>
+                        <input type="email" id="email" required class="contact-input" placeholder="your@email.com">
+                    </div>
+                    <div>
+                        <label class="text-[11px] uppercase tracking-wider text-[#8B7E78] font-semibold block mb-1">Phone Number *</label>
+                        <input type="tel" id="phone" required class="contact-input" placeholder="+27 XX XXX XXXX">
+                    </div>
+                    <div>
+                        <label class="text-[11px] uppercase tracking-wider text-[#8B7E78] font-semibold block mb-1">Notes / Special Requests</label>
+                        <textarea id="notes" rows="3" class="contact-input" placeholder="Any special requests or additional information..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between mt-6 pt-4 border-t border-[#E8E0DB]">
+                    <button id="back-to-step2" class="btn-outline btn-modern w-auto px-6">← Back</button>
+                    <button id="to-step4" class="btn-modern w-auto px-8">Continue →</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Confirmation & Booking -->
+            <div id="step4" class="booking-panel" style="display: none;">
+                <h2 class="font-serif text-2xl mb-6">Confirm Your Booking</h2>
+                
+                <div class="bg-[#FAF4EF] rounded-xl p-4 mb-6">
+                    <h3 class="font-serif text-lg mb-3">Booking Summary</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span class="text-[#8B7E78]">Service:</span><span id="summary-service" class="font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-[#8B7E78]">Participants:</span><span id="summary-participants" class="font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-[#8B7E78]">Date:</span><span id="summary-date" class="font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-[#8B7E78]">Time:</span><span id="summary-time" class="font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-[#8B7E78]">Duration:</span><span id="summary-duration" class="font-medium"></span></div>
+                        <div class="flex justify-between pt-2 border-t border-[#E8E0DB]"><span class="font-semibold">Total:</span><span id="summary-price" class="font-bold text-[#D4A396]"></span></div>
+                    </div>
+                </div>
+                
+                <div class="bg-[#FAF4EF] rounded-xl p-4 mb-6">
+                    <h3 class="font-serif text-lg mb-3">Your Information</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span class="text-[#8B7E78]">Name:</span><span id="summary-name"></span></div>
+                        <div class="flex justify-between"><span class="text-[#8B7E78]">Email:</span><span id="summary-email"></span></div>
+                        <div class="flex justify-between"><span class="text-[#8B7E78]">Phone:</span><span id="summary-phone"></span></div>
+                        <div id="summary-notes-row" class="flex justify-between"><span class="text-[#8B7E78]">Notes:</span><span id="summary-notes" class="italic"></span></div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between mt-6 pt-4 border-t border-[#E8E0DB]">
+                    <button id="back-to-step3" class="btn-outline btn-modern w-auto px-6">← Back</button>
+                    <button id="confirm-booking" class="btn-modern w-auto px-8">Confirm Booking</button>
+                </div>
+                <div id="booking-status" class="text-center text-[11px] mt-4 hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/27746442787" target="_blank" class="whatsapp-btn fixed bottom-8 right-8 z-[100] group">
+        <div class="absolute inset-0 bg-[#D4A396] rounded-full animate-ping opacity-20"></div>
+        <div class="relative bg-white border border-[#D4A396] p-3 rounded-full shadow-lg transition-all duration-500 group-hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A396" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </div>
+    </a>
+
+    <footer class="bg-[#2C2421] pt-16 pb-8 px-6 md:px-10">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-[#A89A94] text-xs">© 2026 Brow Queen. Developed by <a href="https://afribizconnect.co.za/" target="_blank" class="text-[#D4A396] hover:text-white">Afribiz Connect</a></p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        // Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('translate-x-full');
+                const isOpen = !mobileMenu.classList.contains('translate-x-full');
+                menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+                lucide.createIcons();
+                document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+            });
+        }
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // API Base URL
+        const API_BASE = 'http://localhost:5000';
+
+        // Get service from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceId = urlParams.get('id');
+        const serviceName = decodeURIComponent(urlParams.get('name') || 'Service');
+        const servicePrice = parseInt(urlParams.get('price') || '0');
+        const serviceDuration = urlParams.get('duration') || '0';
+        
+        // Pricing configuration for group bookings
+        const EXTRA_PERSON_FEE = Math.round(servicePrice * 0.6);
+        
+        function calculatePrice(participants) {
+            if (participants === 1) return servicePrice;
+            return servicePrice + (participants - 1) * EXTRA_PERSON_FEE;
+        }
+        
+        // Populate service info
+        document.getElementById('service-name').textContent = serviceName;
+        document.getElementById('service-duration').textContent = `${serviceDuration} min`;
+        document.getElementById('service-price').textContent = `R${servicePrice.toLocaleString()}`;
+        document.getElementById('summary-service').textContent = serviceName;
+        document.getElementById('summary-duration').textContent = `${serviceDuration} min`;
+        
+        // Service descriptions
+        const descriptions = {
+            1: 'A bespoke combination of Waxing, Threading, and Tweezing using the Golden Ratio mapping technique.',
+            2: 'Define your arches with high-end, skin-safe dyes for an instantly fuller appearance.',
+            3: 'Long-wear dye that stains skin for up to 10 days and hair for up to 6 weeks.',
+            4: 'Natural plant-based tinting creating a soft, powdered effect while strengthening brow hair.',
+            5: 'The "Supermodel" brow secret. Lifts and sets brow hairs for a full, feathered look.',
+            6: 'Individual synthetic hairs applied for 3D texture and volume to fill gaps.',
+            7: 'Semi-permanent tattooing that mimics natural hair strokes for fuller brows.',
+            8: 'Soft, pixelated shading technique creating a misty makeup look.',
+            9: 'Ultimate premium service combining Microblading hair strokes with Ombre shading.',
+            10: 'Scientific consultation using precision tools to measure your ideal brow shape.',
+            11: 'Professional grooming with luxury pencils and highlighters. Perfect for events.',
+            12: 'Full brow lamination and tint paired with a premium lash lift and tint.'
+        };
+        document.getElementById('service-description').textContent = descriptions[serviceId] || 'Premium brow artistry service.';
+        
+        // Booking state
+        let selectedDate = null;
+        let selectedTime = null;
+        let participants = 1;
+        
+        // Calendar variables
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+        
+        // Available time slots
+        const allTimeSlots = [
+            "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+            "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+            "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"
+        ];
+        
+        // ============ LOAD SETTINGS FROM BACKEND ============
+        let globalSettings = {
+            operatingHours: null,
+            blockedDates: [],
+            slotDuration: 30
+        };
+        
+        async function loadGlobalSettings() {
+            try {
+                const response = await fetch(`${API_BASE}/api/settings`);
+                const data = await response.json();
+                globalSettings = data;
+                console.log('Loaded settings:', globalSettings);
+                await renderCalendar();
+            } catch (error) {
+                console.error('Error loading settings:', error);
+            }
+        }
+        
+        function isDateBlocked(dateStr) {
+            return globalSettings.blockedDates?.some(blocked => blocked.date === dateStr) || false;
+        }
+        
+        function getBlockedReason(dateStr) {
+            const blocked = globalSettings.blockedDates?.find(b => b.date === dateStr);
+            return blocked?.reason || 'Studio closed on this date';
+        }
+        
+        function isDayEnabled(dateObj) {
+            const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            const dayName = days[dateObj.getDay()];
+            return globalSettings.operatingHours?.[dayName]?.enabled || false;
+        }
+        
+        // Fetch available slots from backend
+        async function fetchAvailableSlots(date) {
+            try {
+                const response = await fetch(`${API_BASE}/api/available-slots/${date}`);
+                const data = await response.json();
+                return data.booked_slots || [];
+            } catch (error) {
+                console.error('Error fetching slots:', error);
+                return [];
+            }
+        }
+        
+        // Update participant display and price
+        function updateParticipantDisplay() {
+            document.getElementById('participant-count').textContent = participants;
+            const totalPrice = calculatePrice(participants);
+            document.getElementById('price-amount').textContent = totalPrice.toLocaleString();
+            document.getElementById('price-breakdown-text').innerHTML = `Base price: R${servicePrice.toLocaleString()} for 1 person | +R${EXTRA_PERSON_FEE.toLocaleString()} per extra person`;
+            document.getElementById('summary-participants').textContent = `${participants} ${participants === 1 ? 'person' : 'people'}`;
+            document.getElementById('summary-price').textContent = `R${totalPrice.toLocaleString()}`;
+            
+            document.getElementById('decrement-participants').disabled = participants <= 1;
+            document.getElementById('increment-participants').disabled = participants >= 10;
+        }
+        
+        // Render calendar
+        async function renderCalendar() {
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const startingDay = firstDay.getDay();
+            const daysInMonth = lastDay.getDate();
+            
+            document.getElementById('month-year').textContent = `${firstDay.toLocaleString('default', { month: 'long' })} ${currentYear}`;
+            
+            const calendarGrid = document.getElementById('calendar-grid');
+            while (calendarGrid.children.length > 7) {
+                calendarGrid.removeChild(calendarGrid.lastChild);
+            }
+            
+            for (let i = 0; i < startingDay; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'calendar-date unavailable';
+                emptyDiv.style.visibility = 'hidden';
+                calendarGrid.appendChild(emptyDiv);
+            }
+            
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            for (let date = 1; date <= daysInMonth; date++) {
+                const dateObj = new Date(currentYear, currentMonth, date);
+                const dateStr = dateObj.toISOString().split('T')[0];
+                const isPast = dateObj < today;
+                const isBlocked = isDateBlocked(dateStr);
+                const isDayClosed = !isDayEnabled(dateObj);
+                const isUnavailable = isPast || isBlocked || isDayClosed;
+                
+                const dateDiv = document.createElement('div');
+                dateDiv.className = `calendar-date ${isUnavailable ? 'unavailable' : ''}`;
+                if (dateStr === new Date().toISOString().split('T')[0]) {
+                    dateDiv.classList.add('today');
+                }
+                dateDiv.textContent = date;
+                dateDiv.dataset.date = dateStr;
+                
+                if (isBlocked) {
+                    dateDiv.title = getBlockedReason(dateStr);
+                } else if (isDayClosed) {
+                    dateDiv.title = 'Studio closed on this day';
+                } else if (isPast) {
+                    dateDiv.title = 'Past date - cannot book';
+                }
+                
+                if (!isUnavailable) {
+                    dateDiv.addEventListener('click', () => selectDate(dateStr, dateDiv));
+                }
+                calendarGrid.appendChild(dateDiv);
+            }
+        }
+        
+        // Select date
+        async function selectDate(dateStr, element) {
+            document.querySelectorAll('.calendar-date').forEach(el => {
+                el.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            selectedDate = dateStr;
+            document.getElementById('summary-date').textContent = new Date(dateStr).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            
+            const bookedSlotsForDate = await fetchAvailableSlots(dateStr);
+            
+            const timeSlotsContainer = document.getElementById('time-slots');
+            timeSlotsContainer.innerHTML = '';
+            
+            allTimeSlots.forEach(slot => {
+                const isBooked = bookedSlotsForDate.includes(slot);
+                const slotDiv = document.createElement('div');
+                slotDiv.className = `time-slot ${isBooked ? 'unavailable' : ''}`;
+                slotDiv.textContent = slot;
+                if (!isBooked) {
+                    slotDiv.addEventListener('click', () => selectTime(slot, slotDiv));
+                }
+                timeSlotsContainer.appendChild(slotDiv);
+            });
+            
+            if (selectedTime) {
+                document.getElementById('to-step2').disabled = false;
+            }
+        }
+        
+        // Select time
+        function selectTime(time, element) {
+            document.querySelectorAll('.time-slot').forEach(el => {
+                el.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedTime = time;
+            document.getElementById('summary-time').textContent = time;
+            document.getElementById('to-step2').disabled = false;
+        }
+        
+        // Step navigation
+        function showStep(step) {
+            document.getElementById('step1').style.display = step === 1 ? 'block' : 'none';
+            document.getElementById('step2').style.display = step === 2 ? 'block' : 'none';
+            document.getElementById('step3').style.display = step === 3 ? 'block' : 'none';
+            document.getElementById('step4').style.display = step === 4 ? 'block' : 'none';
+            
+            const step1Indicator = document.getElementById('step1-indicator');
+            const step2Indicator = document.getElementById('step2-indicator');
+            const step3Indicator = document.getElementById('step3-indicator');
+            const step4Indicator = document.getElementById('step4-indicator');
+            
+            [step1Indicator, step2Indicator, step3Indicator, step4Indicator].forEach(el => {
+                el.classList.remove('active', 'completed');
+            });
+            
+            if (step === 1) step1Indicator.classList.add('active');
+            else if (step === 2) step2Indicator.classList.add('active');
+            else if (step === 3) step3Indicator.classList.add('active');
+            else if (step === 4) step4Indicator.classList.add('active');
+            
+            if (step > 1) step1Indicator.classList.add('completed');
+            if (step > 2) step2Indicator.classList.add('completed');
+            if (step > 3) step3Indicator.classList.add('completed');
+        }
+        
+        // Update summary with customer details
+        function updateSummary() {
+            document.getElementById('summary-name').textContent = document.getElementById('fullName').value || '—';
+            document.getElementById('summary-email').textContent = document.getElementById('email').value || '—';
+            document.getElementById('summary-phone').textContent = document.getElementById('phone').value || '—';
+            const notes = document.getElementById('notes').value;
+            if (notes) {
+                document.getElementById('summary-notes').textContent = notes;
+                document.getElementById('summary-notes-row').style.display = 'flex';
+            } else {
+                document.getElementById('summary-notes').textContent = 'None';
+            }
+        }
+        
+        // Submit booking
+        async function submitBooking() {
+            const statusDiv = document.getElementById('booking-status');
+            const confirmBtn = document.getElementById('confirm-booking');
+            
+            statusDiv.classList.remove('hidden');
+            statusDiv.className = "text-center text-[11px] text-[#D4A396] mt-4";
+            statusDiv.innerHTML = '<span class="loader" style="display:inline-block; width:12px; height:12px; border:2px solid #D4A396; border-top-color:transparent; border-radius:50%; margin-right:8px;"></span> Processing your booking...';
+            confirmBtn.disabled = true;
+            
+            const totalPrice = calculatePrice(participants);
+            
+            const bookingData = {
+                customer_name: document.getElementById('fullName').value,
+                customer_email: document.getElementById('email').value,
+                customer_phone: document.getElementById('phone').value,
+                service_id: parseInt(serviceId),
+                service_name: serviceName,
+                participants: participants,
+                appointment_date: selectedDate,
+                appointment_time: selectedTime,
+                notes: document.getElementById('notes').value,
+                price: totalPrice
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/bookings`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookingData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    statusDiv.className = "text-center text-[11px] text-green-600 mt-4";
+                    statusDiv.innerHTML = `✓ Booking confirmed! Booking #${result.booking_number} for ${participants} ${participants === 1 ? 'person' : 'people'}. A confirmation email has been sent.`;
+                    setTimeout(() => {
+                        window.location.href = 'services.html';
+                    }, 3000);
+                } else {
+                    throw new Error(result.error || 'Booking failed');
+                }
+            } catch (error) {
+                statusDiv.className = "text-center text-[11px] text-red-500 mt-4";
+                statusDiv.innerHTML = "Error: Could not complete booking. Please try again or WhatsApp us.";
+                confirmBtn.disabled = false;
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('to-step2').addEventListener('click', () => {
+            if (selectedDate && selectedTime) {
+                showStep(2);
+            }
+        });
+        
+        document.getElementById('back-to-step1').addEventListener('click', () => showStep(1));
+        document.getElementById('back-to-step2').addEventListener('click', () => showStep(2));
+        document.getElementById('back-to-step3').addEventListener('click', () => showStep(3));
+        
+        document.getElementById('to-step3').addEventListener('click', () => showStep(3));
+        
+        document.getElementById('to-step4').addEventListener('click', () => {
+            if (document.getElementById('fullName').value && document.getElementById('email').value && document.getElementById('phone').value) {
+                updateSummary();
+                showStep(4);
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+        
+        document.getElementById('confirm-booking').addEventListener('click', submitBooking);
+        
+        // Participant buttons
+        document.getElementById('decrement-participants').addEventListener('click', () => {
+            if (participants > 1) {
+                participants--;
+                updateParticipantDisplay();
+            }
+        });
+        
+        document.getElementById('increment-participants').addEventListener('click', () => {
+            if (participants < 10) {
+                participants++;
+                updateParticipantDisplay();
+            }
+        });
+        
+        // Month navigation
+        document.getElementById('prev-month').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        });
+        
+        document.getElementById('next-month').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        });
+        
+        // Initialize
+        loadGlobalSettings();
+        showStep(1);
+        updateParticipantDisplay();
+    </script>
+</body>
+</html>

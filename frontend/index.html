@@ -44,31 +44,15 @@
         .bg-gold { background-color: var(--gold); }
         .border-gold { border-color: var(--gold); }
         
-        /* Animations */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
         }
         
         .animate-fade-up {
             animation: fadeUp 0.8s ease forwards;
         }
         
-        .animate-fade-in {
-            animation: fadeIn 1s ease forwards;
-        }
-        
-        /* Modern Card Styles */
         .modern-card {
             background: white;
             border-radius: 24px;
@@ -84,7 +68,6 @@
             border-color: var(--gold-light);
         }
         
-        /* Service Cards */
         .service-card {
             background: white;
             border-radius: 20px;
@@ -116,7 +99,6 @@
             box-shadow: var(--shadow-md);
         }
         
-        /* Stats Section */
         .stat-card {
             text-align: center;
             padding: 2rem;
@@ -132,7 +114,6 @@
             font-family: 'Playfair Display', serif;
         }
         
-        /* Testimonial Card */
         .testimonial-card {
             background: white;
             border-radius: 24px;
@@ -150,7 +131,6 @@
             font-family: Georgia, serif;
         }
         
-        /* CTA Section */
         .cta-section {
             background: linear-gradient(135deg, var(--text-dark) 0%, #3A2E2A 100%);
             border-radius: 32px;
@@ -158,7 +138,6 @@
             text-align: center;
         }
         
-        /* Button Styles */
         .btn-modern {
             display: inline-block;
             padding: 1rem 2.5rem;
@@ -202,7 +181,6 @@
             transform: translateY(-3px);
         }
         
-        /* Hero Section */
         .hero-section {
             min-height: 90vh;
             position: relative;
@@ -211,7 +189,6 @@
             overflow: hidden;
         }
         
-        /* Image hover effects */
         .img-hover-zoom {
             overflow: hidden;
             border-radius: 24px;
@@ -225,7 +202,6 @@
             transform: scale(1.05);
         }
         
-        /* Feature badges */
         .feature-badge {
             display: inline-flex;
             align-items: center;
@@ -237,7 +213,6 @@
             font-weight: 500;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .stat-number { font-size: 2rem; }
             .cta-section { padding: 2rem 1rem; }
@@ -250,7 +225,6 @@
         }
         .animate-ping { animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
         
-        /* Logo size */
         .logo-image {
             height: 70px;
             width: auto;
@@ -269,14 +243,13 @@
 <body>
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#D4A396] text-black px-4 py-2 font-bold uppercase tracking-widest text-xs z-[300] rounded-full">Skip to main content</a>
 
-    <!-- Modern Navigation -->
     <nav class="fixed w-full z-[200] py-3 md:py-4 px-6 md:px-10 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-[#D4A396]/10 shadow-sm">
         <a href="index.html" class="flex items-center">
-            <img src="logo1.png" alt="Brow Queen Luxury Eyebrow Artistry Studio Logo" class="logo-image" loading="eager" decoding="async" />
+            <img src="images/logo1.png" alt="Brow Queen Luxury Eyebrow Artistry Studio Logo" class="logo-image" loading="eager" decoding="async" />
         </a>
         <div class="hidden md:flex space-x-8 lg:space-x-10 text-[11px] uppercase tracking-[0.2em] items-center font-semibold">
             <a href="index.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Home</a>
-               <a href="about.html" class="text-[#2C2421] hover:text-[#D4A396] transition">About</a>
+            <a href="about.html" class="text-[#2C2421] hover:text-[#D4A396] transition">About</a>
             <a href="services.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Services</a>
             <a href="gallery.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Gallery</a>
             <a href="contact.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Contact</a>
@@ -289,7 +262,6 @@
 
     <main id="main-content"></main>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col justify-center items-center space-y-8 text-center transition-transform duration-500 ease-in-out shadow-xl">
         <a href="index.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Home</a>
         <a href="about.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">About</a>
@@ -302,7 +274,7 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="absolute inset-0">
-            <img src="image 17.jpg" alt="Luxury brow transformation" class="w-full h-full object-cover">
+            <img src="images/image17.jpg" alt="Luxury brow transformation" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-white/85 via-white/60 to-transparent"></div>
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full pt-32">
@@ -334,7 +306,6 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Service 1 -->
                 <div class="service-card">
                     <i data-lucide="pen-tool" class="w-10 h-10 text-[#D4A396] mb-4"></i>
                     <h3 class="font-serif text-xl mb-2">Microblading</h3>
@@ -345,7 +316,6 @@
                     </div>
                 </div>
                 
-                <!-- Service 2 -->
                 <div class="service-card">
                     <i data-lucide="sparkles" class="w-10 h-10 text-[#D4A396] mb-4"></i>
                     <h3 class="font-serif text-xl mb-2">Brow Lamination</h3>
@@ -356,7 +326,6 @@
                     </div>
                 </div>
                 
-                <!-- Service 3 -->
                 <div class="service-card">
                     <i data-lucide="wind" class="w-10 h-10 text-[#D4A396] mb-4"></i>
                     <h3 class="font-serif text-xl mb-2">Ombre Powder</h3>
@@ -405,7 +374,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="img-hover-zoom order-2 lg:order-1">
-                    <img src="image 15.jpg" alt="Master Stylist Odelia" class="w-full rounded-3xl shadow-2xl">
+                    <img src="images/image15.jpg" alt="Master Stylist Odelia" class="w-full rounded-3xl shadow-2xl">
                 </div>
                 <div class="order-1 lg:order-2">
                     <span class="text-[#D4A396] uppercase tracking-[0.3em] text-xs font-semibold">The Artist</span>
@@ -578,7 +547,6 @@
     <script>
         lucide.createIcons();
         
-        // Mobile Menu
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -602,7 +570,6 @@
             });
         });
         
-        // Scroll animations
         const observerOptions = { threshold: 0.2, rootMargin: '0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

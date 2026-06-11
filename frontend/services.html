@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Brow Queen - Luxury Eyebrow Treatments</title>
+    <meta name="description" content="Explore our elite menu of 12 professional brow treatments in Durban. Book online instantly.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Services | Brow Queen">
+    <meta property="og:description" content="Book luxury brow treatments online in Durban.">
+    <meta property="og:image" content="logo1.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+        
+        :root { 
+            --gold: #D4A396;
+            --gold-dark: #B8877A;
+            --gold-light: #E8C9C0;
+            --bg-light: #FDF8F5;
+            --bg-soft: #FAF4EF;
+            --text-dark: #2C2421;
+            --text-soft: #6B5E58;
+            --border-light: #E8E0DB;
+            --shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.05);
+            --shadow-md: 0 20px 40px -15px rgba(0,0,0,0.08);
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-light); 
+            color: var(--text-dark); 
+            overflow-x: hidden; 
+        }
+        
+        h1, h2, h3, .font-serif { 
+            font-family: 'Playfair Display', serif; 
+        }
+        
+        .text-gold { color: var(--gold); }
+        .bg-gold { background-color: var(--gold); }
+        
+        /* Service Card Styles */
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold-light);
+        }
+        
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gold-light);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            background: var(--gold);
+        }
+        
+        .service-card:hover .service-icon i {
+            color: white !important;
+        }
+        
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .duration-badge {
+            background: var(--bg-soft);
+            padding: 0.25rem 0.75rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            color: var(--text-soft);
+        }
+        
+        .btn-details {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            color: var(--gold);
+            border: 1.5px solid var(--gold);
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-details:hover {
+            background: var(--gold);
+            color: white;
+        }
+        
+        .logo-image {
+            height: 70px;
+            width: auto;
+            max-width: 220px;
+            object-fit: contain;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-image { height: 50px; max-width: 160px; }
+            .service-card { padding: 1.2rem; }
+            .price-tag { font-size: 1.2rem; }
+        }
+        
+        @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+        .animate-ping { animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#D4A396] text-black px-4 py-2 font-bold uppercase tracking-widest text-xs z-[300] rounded-full">Skip to main content</a>
+
+    <nav class="fixed w-full z-[200] py-3 md:py-4 px-6 md:px-10 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-[#D4A396]/10 shadow-sm">
+        <a href="index.html" class="flex items-center"><img src="images/logo1.png" alt="Brow Queen Logo" class="logo-image" loading="eager" /></a>
+        <div class="hidden md:flex space-x-8 lg:space-x-10 text-[11px] uppercase tracking-[0.2em] items-center font-semibold">
+            <a href="index.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Home</a>
+            <a href="about.html" class="text-[#2C2421] hover:text-[#D4A396] transition">About</a>
+            <a href="services.html" class="text-[#D4A396] hover:text-[#D4A396] transition">Services</a>
+            <a href="gallery.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Gallery</a>
+            <a href="contact.html" class="text-[#2C2421] hover:text-[#D4A396] transition">Book</a>
+            <a href="https://wa.me/27746442787" target="_blank" class="bg-[#D4A396] text-white px-6 py-2.5 font-bold text-xs tracking-wider hover:bg-[#2C2421] transition rounded-full">Book Now</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-[#D4A396] p-2"><i data-lucide="menu" id="menu-icon"></i></button>
+    </nav>
+
+    <main id="main-content"></main>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col justify-center items-center space-y-8 text-center transition-transform duration-500 ease-in-out shadow-xl">
+        <a href="index.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Home</a>
+        <a href="about.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">About</a>
+        <a href="services.html" class="text-[#D4A396] text-xl font-serif tracking-widest uppercase">Services</a>
+        <a href="gallery.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Gallery</a>
+        <a href="contact.html" class="text-[#2C2421] text-xl font-serif tracking-widest uppercase hover:text-[#D4A396]">Book</a>
+        <a href="https://wa.me/27746442787" class="bg-[#D4A396] text-white px-8 py-3 font-bold uppercase tracking-widest mt-4 rounded-full">Book Now</a>
+    </div>
+
+    <section class="pt-32 md:pt-40 pb-16 px-6 md:px-10 text-center bg-gradient-to-b from-[#FAF4EF] to-white">
+        <div class="max-w-3xl mx-auto">
+            <span class="text-[#D4A396] uppercase tracking-[0.3em] text-xs font-semibold mb-4 block">The Royal Menu</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 text-[#2C2421]">Expert Brow <span class="text-[#D4A396]">Artistry</span></h1>
+            <p class="text-[#8B7E78] max-w-2xl mx-auto text-sm leading-relaxed">Choose a service below to view details and book your appointment.</p>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 md:px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="scissors" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Brow Shaping</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Bespoke combination of Waxing, Threading, and Tweezing using Golden Ratio mapping.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">45 min</span>
+                        <span class="price-tag">R280</span>
+                    </div>
+                    <a href="service-detail.html?id=1&name=Brow+Shaping&price=280&duration=45" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="palette" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Brow Tinting</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Define your arches with high-end, skin-safe dyes for an instantly fuller appearance.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">20 min</span>
+                        <span class="price-tag">R150</span>
+                    </div>
+                    <a href="service-detail.html?id=2&name=Brow+Tinting&price=150&duration=20" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="droplets" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Hybrid Tint</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Long-wear dye that stains skin for up to 10 days and hair for up to 6 weeks.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">40 min</span>
+                        <span class="price-tag">R350</span>
+                    </div>
+                    <a href="service-detail.html?id=3&name=Hybrid+Tint&price=350&duration=40" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="leaf" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Henna Brows</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Natural plant-based tinting creating a soft, powdered effect while strengthening brow hair.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">60 min</span>
+                        <span class="price-tag">R380</span>
+                    </div>
+                    <a href="service-detail.html?id=4&name=Henna+Brows&price=380&duration=60" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="sparkles" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Brow Lamination</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">The "Supermodel" brow secret. Lifts and sets brow hairs for a full, feathered look.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">60 min</span>
+                        <span class="price-tag">R500</span>
+                    </div>
+                    <a href="service-detail.html?id=5&name=Brow+Lamination&price=500&duration=60" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="layers" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Brow Extensions</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Individual synthetic hairs applied for 3D texture and volume to fill gaps.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">90 min</span>
+                        <span class="price-tag">R950</span>
+                    </div>
+                    <a href="service-detail.html?id=6&name=Brow+Extensions&price=950&duration=90" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="pen-tool" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Microblading</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Semi-permanent tattooing that mimics natural hair strokes for fuller brows.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">180 min</span>
+                        <span class="price-tag">R3,500</span>
+                    </div>
+                    <a href="service-detail.html?id=7&name=Microblading&price=3500&duration=180" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 8 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="wind" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Ombre Powder</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Soft, pixelated shading technique creating a misty makeup look.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">180 min</span>
+                        <span class="price-tag">R3,800</span>
+                    </div>
+                    <a href="service-detail.html?id=8&name=Ombre+Powder&price=3800&duration=180" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 9 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="wand-2" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Combo Brows</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Ultimate premium service combining Microblading with Ombre shading.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">210 min</span>
+                        <span class="price-tag">R4,500</span>
+                    </div>
+                    <a href="service-detail.html?id=9&name=Combo+Brows&price=4500&duration=210" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 10 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="ruler" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Brow Mapping</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Scientific consultation using precision tools to measure your ideal brow shape.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">30 min</span>
+                        <span class="price-tag">R200</span>
+                    </div>
+                    <a href="service-detail.html?id=10&name=Brow+Mapping&price=200&duration=30" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 11 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="star" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">Fill & Styling</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Professional grooming with luxury pencils and highlighters. Perfect for events.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">30 min</span>
+                        <span class="price-tag">R300</span>
+                    </div>
+                    <a href="service-detail.html?id=11&name=Fill+%26+Styling&price=300&duration=30" class="btn-details">View Details →</a>
+                </div>
+                
+                <!-- Service 12 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="gem" class="w-7 h-7 text-[#D4A396]"></i></div>
+                    <h3 class="font-serif text-xl mb-2">The Royal Duo</h3>
+                    <p class="text-[#8B7E78] text-sm mb-3">Full brow lamination and tint paired with a premium lash lift and tint.</p>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="duration-badge">120 min</span>
+                        <span class="price-tag">R1,200</span>
+                    </div>
+                    <a href="service-detail.html?id=12&name=The+Royal+Duo&price=1200&duration=120" class="btn-details">View Details →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/27746442787" target="_blank" class="whatsapp-btn fixed bottom-8 right-8 z-[100] group">
+        <div class="absolute inset-0 bg-[#D4A396] rounded-full animate-ping opacity-20"></div>
+        <div class="relative bg-white border border-[#D4A396] p-3 rounded-full shadow-lg transition-all duration-500 group-hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A396" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </div>
+    </a>
+
+    <footer class="bg-[#2C2421] pt-16 pb-8 px-6 md:px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div><h3 class="text-2xl font-serif text-[#D4A396] mb-4">Brow Queen</h3><p class="text-[#A89A94] text-sm">Luxury eyebrow artistry studio in Durban.</p></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5">Quick Links</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li><a href="index.html" class="hover:text-[#D4A396]">Home</a></li><li><a href="services.html" class="hover:text-[#D4A396]">Services</a></li><li><a href="about.html" class="hover:text-[#D4A396]">About</a></li><li><a href="gallery.html" class="hover:text-[#D4A396]">Gallery</a></li><li><a href="contact.html" class="hover:text-[#D4A396]">Book</a></li></ul></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5">Contact</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 72 Rosetta Road, Windermere</li><li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +27 74 644 2787</li><li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Kippenodelia032@gmail.com</li></ul></div>
+                <div><h4 class="text-white uppercase tracking-wider text-sm mb-5">Hours</h4><ul class="space-y-2 text-[#A89A94] text-sm"><li>Mon-Sat: 09:00 - 18:00</li><li>Sunday: Closed</li></ul></div>
+            </div>
+            <div class="pt-6 border-t border-white/10 text-center"><p class="text-[#A89A94] text-xs">© 2026 Brow Queen. Developed by <a href="https://afribizconnect.co.za/" target="_blank" class="text-[#D4A396] hover:text-white">Afribiz Connect</a></p></div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('translate-x-full');
+                const isOpen = !mobileMenu.classList.contains('translate-x-full');
+                menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+                lucide.createIcons();
+                document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+            });
+        }
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
+</html>
